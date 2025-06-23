@@ -98,7 +98,7 @@ function LandingPage() {
             See My Work
           </Link>
           <a
-            href="https://wa.me/919732172167?text=Hi%20Sujoy%2C%20I%20saw%20your%20work%20and%20wanted%20to%20connect!"
+            href="https://wa.me/919732172167?text=Hi%2C%20I%20saw%20your%20work%20and%20wanted%20to%20connect!"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 border border-green-500 text-green-600 px-6 py-3 rounded-lg hover:bg-green-50 transition font-bold shadow-sm"
