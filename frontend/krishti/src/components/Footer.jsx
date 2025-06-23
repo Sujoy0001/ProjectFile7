@@ -18,20 +18,20 @@ export default function Footer() {
             alt="Logo"
             className="w-32 sm:mx-auto"
           />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, ab cum doloribus aut rerum velit.
+          <p className="font-semibold text-2xl sm:text-lg text-gray-800 italic">
+            Creativity is my passion. I want to involve myself in the creation of uncommon design and craft.
           </p>
 
           <div className="items-center gap-x-3 space-y-3 sm:flex sm:justify-center sm:space-y-0">
             <a
-              href="javascript:void(0)"
-              className="block py-2 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
+              href="/my-work/design"
+              className="block py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
             >
               View my work
             </a>
             <a
               href="javascript:void(0)"
-              className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg"
+              className="flex items-center justify-center gap-x-2 py-3 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg"
             >
               View Blog's
               <svg
