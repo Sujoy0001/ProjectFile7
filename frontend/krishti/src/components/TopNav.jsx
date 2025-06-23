@@ -23,7 +23,7 @@ export default function TopNav() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="block py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"  // Enhanced button styling
+            className="block py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-md hover:shadow-none"  // Enhanced button styling
           >
             Contact Me
           </Link>

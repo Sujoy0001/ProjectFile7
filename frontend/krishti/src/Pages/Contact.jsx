@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaWhatsapp, FaGooglePay , FaEnvelope, FaPhone, FaFacebookF, FaYoutube, FaInstagram  } from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -86,33 +86,45 @@ export default function Contact() {
           {/* Contact Details */}
           <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Contact Information</h2>
-            <div className="space-y-4">
+            <div className="space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-blue-600 text-xl" />
-                <a href="mailto:your.email@example.com" className="text-gray-700 hover:text-blue-600 transition-colors">
-                  your.email@example.com
+                <a href="mailto:animeshday.in@gmail.com" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  animeshday.in@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <FaPhone className="text-blue-600 text-xl" />
-                <a href="tel:+1234567890" className="text-gray-700 hover:text-blue-600 transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+9732172167" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  +91 9732172167
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaGooglePay  className="text-blue-600 text-4xl" />
+                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  9999999999
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaWhatsapp  className="text-blue-600 text-xl" />
+                <a href="tel:+9732172167" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  +91 9732172167
                 </a>
               </div>
             </div>
 
             {/* Social Media */}
-            <div className="mt-8">
+            <div className="mt-4">
               <h3 className="text-xl font-medium mb-4 text-gray-800">Connect With Me</h3>
               <div className="flex space-x-4">
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
-                  <FaGithub className="text-xl" />
+                  <FaFacebookF  className="text-xl" />
                 </a>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
-                  <FaLinkedin className="text-xl" />
+                  <FaYoutube  className="text-xl" />
                 </a>
                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
-                  <FaTwitter className="text-xl" />
+                  <FaInstagram  className="text-xl" />
                 </a>
               </div>
             </div>
