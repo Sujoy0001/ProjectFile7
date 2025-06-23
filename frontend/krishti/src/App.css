@@ -1,0 +1,14 @@
+.nav-link {
+  transition-property: color;
+  transition-duration: 200ms;
+}
+
+.nav-link:hover {
+  color: #3b82f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-link:hover {
+    color: #60a5fa; 
+  }
+}
