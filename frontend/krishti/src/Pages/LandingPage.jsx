@@ -6,6 +6,7 @@ import { PaintBrushIcon, PhotoIcon, FilmIcon, SwatchIcon,} from '@heroicons/reac
 import img1 from "../assets/images/design/DESIGN 1.JPG"
 import img2 from "../assets/images/design/DESIGN 2.JPG"
 import img3 from "../assets/images/design/DESIGN 5.JPG"
+import cv from "../assets/logos/Bio-data.jpg"
 
 const images = [
   img1,img2,img3,
@@ -91,12 +92,14 @@ function LandingPage() {
           Creativity is my passion. I want to involve myself in the creation of uncommon design and craft.
         </p>
         <div className="flex flex-col md:flex-row justify-center gap-4 max-w-md mx-auto">
-          <Link
-            to="/my-work/design"
+          <a
+            href={cv} 
+            download
             className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all font-bold shadow-lg hover:shadow-xl"
           >
-            See My Work
-          </Link>
+            Download CV
+          </a>
+
           <a
             href="https://wa.me/919732172167?text=Hi%2C%20I%20saw%20your%20work%20and%20wanted%20to%20connect!"
             target="_blank"
