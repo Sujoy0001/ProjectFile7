@@ -45,18 +45,18 @@ export default function MyWorkPage() {
 
   const openModal = (imgSrc) => {
     setSelectedImage(imgSrc);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = (e) => {
-    if (e.target === e.currentTarget || e.target.closest('.close-button')) {
+    if (e.target === e.currentTarget || e.target.closest(".close-button")) {
       setSelectedImage(null);
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 py-6">
       <h1 className="text-4xl font-bold text-center mb-10">{data.title}</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
@@ -72,16 +72,27 @@ export default function MyWorkPage() {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               loading="lazy"
             />
-            
+
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
               <span className="text-white font-medium text-lg truncate">
                 {data.title} #{idx + 1}
               </span>
             </div>
-            
+
             <div className="absolute top-3 right-3 bg-white/90 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-gray-800"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             </div>
           </div>
@@ -90,29 +101,35 @@ export default function MyWorkPage() {
 
       {/* Popup Modal (not full screen) */}
       {selectedImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-opacity-90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
           onClick={closeModal}
         >
-          <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full relative">
-            <button 
-              className="close-button absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-red-600 transition-colors z-10"
-              onClick={closeModal}
-              aria-label="Close modal"
-            >
-              &times;
-            </button>
-            <div className="p-2">
+          <div
+            className="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 relative"
+            onClick={(e) => e.stopPropagation()} // Prevent closing on inner click
+          >
+            {/* Top header with title and close */}
+            <div className="flex items-center justify-between p-4 border-b">
+              <h2 className="text-lg font-semibold text-gray-800">
+                {data.title} - Image {data.images.indexOf(selectedImage) + 1}
+              </h2>
+              <button
+                onClick={closeModal}
+                aria-label="Close modal"
+                className="text-gray-900 hover:text-red-500 transition text-3xl pointer-coarse:pointer modal-close"
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Image container */}
+            <div className="p-4">
               <img
                 src={selectedImage}
-                alt="Enlarged view"
-                className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+                alt="Selected"
+                className="mx-auto max-h-[75vh] w-full object-contain rounded"
               />
-            </div>
-            <div className="px-4 py-3 bg-gray-50 rounded-b-xl border-t border-gray-200">
-              <p className="text-center text-gray-700 font-medium">
-                {data.title} - Image {data.images.indexOf(selectedImage) + 1}
-              </p>
             </div>
           </div>
         </div>

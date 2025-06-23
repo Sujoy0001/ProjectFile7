@@ -17,20 +17,19 @@ export default function Navbar() {
       ),
     },
     {
-        name: "My Work",
-        icon: (
-            <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-        ),
-        subItems: [
-            { name: "Design", url: "/my-work/design", icon: "🎨" },
-            { name: "Logo Design", url: "/my-work/logo-design", icon: "🖌️" },
-            { name: "Mask Making", url: "/my-work/mask-making", icon: "🎭" },
-            { name: "Book Cover", url: "/my-work/book-cover", icon: "🏖️" },
-            { name: "Others", url: "/my-work/others", icon: "🧩" }
-        ]
-
+      name: "My Work",
+      icon: (
+        <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+      ),
+      subItems: [
+        { name: "Design", url: "/my-work/design", icon: "🎨" },
+        { name: "Logo Design", url: "/my-work/logo-design", icon: "🖌️" },
+        { name: "Mask Making", url: "/my-work/mask-making", icon: "🎭" },
+        { name: "Book Cover", url: "/my-work/book-cover", icon: "🏖️" },
+        { name: "Others", url: "/my-work/others", icon: "🧩" },
+      ],
     },
     {
       name: "College Work",
@@ -40,10 +39,10 @@ export default function Navbar() {
         </svg>
       ),
       subItems: [
-            { name: "Model Making", url: "/college-work/model", icon: "🎨" },
-            { name: "Sand Art", url: "/college-work/sand-art", icon: "🏖️" },
-            { name: "Others", url: "/college-work/others", icon: "🧩" }
-        ]
+        { name: "Model Making", url: "/college-work/model", icon: "🎨" },
+        { name: "Sand Art", url: "/college-work/sand-art", icon: "🏖️" },
+        { name: "Others", url: "/college-work/others", icon: "🧩" },
+      ],
     },
     {
       name: "About Me",
@@ -76,7 +75,12 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setActiveDropdown(null);
+    const dropdownWithActive = navItems.find(
+      (item) =>
+        item.subItems &&
+        item.subItems.some((sub) => sub.url === location.pathname)
+    );
+    setActiveDropdown(dropdownWithActive?.name || null);
   }, [location.pathname]);
 
   const toggleDropdown = (itemName) => {
@@ -88,62 +92,86 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-center relative" ref={dropdownRef}>
           <div className="flex space-x-8">
-            {navItems.map((item, index) => (
-              <div key={index} className="relative">
-                {item.subItems ? (
-                  <>
-                    <button
-                      onClick={() => toggleDropdown(item.name)}
+            {navItems.map((item, index) => {
+              const isActiveParent =
+                item.url === location.pathname ||
+                (item.subItems &&
+                  item.subItems.some((sub) => sub.url === location.pathname));
+
+              return (
+                <div key={index} className="relative">
+                  {item.subItems ? (
+                    <>
+                      <button
+                        onClick={() => toggleDropdown(item.name)}
+                        className={`flex items-center px-3 py-2 text-lg font-medium transition-colors ${
+                          isActiveParent || activeDropdown === item.name
+                            ? "text-yellow-500 font-semibold"
+                            : "text-gray-700 hover:text-blue-500"
+                        }`}
+                      >
+                        {item.icon}
+                        {item.name}
+                        <svg
+                          className={`w-4 h-4 ml-1 transition-transform ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      {activeDropdown === item.name && (
+                        <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-150 bg-white rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 z-50 py-3">
+                          <h3 className="px-4 py-3 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                            {item.name}
+                          </h3>
+                          <div className="grid grid-cols-3 gap-2 px-3 py-2">
+                            {item.subItems.map((subItem, subIndex) => (
+                              <Link
+                                key={subIndex}
+                                to={subItem.url}
+                                onClick={() => {
+                                  // ✅ Close dropdown after click
+                                  setTimeout(() => setActiveDropdown(null), 100);
+                                }}
+                                className={`flex items-center px-2 py-2.5 text-lg font-medium rounded transition-colors justify-center gap-1 ${
+                                  location.pathname === subItem.url
+                                    ? "text-yellow-500 bg-yellow-50"
+                                    : "text-gray-800 hover:text-blue-600 hover:bg-blue-50"
+                                }`}
+                              >
+                                <span className="mr-2">{subItem.icon}</span>
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.url}
                       className={`flex items-center px-3 py-2 text-lg font-medium transition-colors ${
-                        activeDropdown === item.name
-                          ? "text-blue-600 font-semibold"
+                        location.pathname === item.url
+                          ? "text-yellow-500"
                           : "text-gray-700 hover:text-blue-500"
                       }`}
                     >
                       {item.icon}
                       {item.name}
-                      <svg
-                        className={`w-4 h-4 ml-1 transition-transform ${
-                          activeDropdown === item.name ? "rotate-180" : ""
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    {activeDropdown === item.name && (
-                      <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-150 bg-white rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 z-50 py-3">
-                        <h3 className="px-4 py-3 text-sm font-bold text-gray-500 uppercase tracking-wider">
-                          {item.name}
-                        </h3>
-                        <div className="grid grid-cols-3 gap-2 px-3 py-2">
-                          {item.subItems.map((subItem, subIndex) => (
-                            <Link
-                              key={subIndex}
-                              to={subItem.url}
-                              className="flex items-center px-4 py-4 text-sm font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors justify-center"
-                            >
-                              <span className="mr-2">{subItem.icon}</span>
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <Link
-                    to={item.url}
-                    className="flex items-center px-3 py-2 text-lg font-medium text-gray-700 hover:text-blue-500 transition-colors"
-                  >
-                    {item.icon}
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

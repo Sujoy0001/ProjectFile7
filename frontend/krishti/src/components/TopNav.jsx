@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../assets/logos/logo.png';
 
 export default function TopNav() {
   return (
@@ -9,14 +10,14 @@ export default function TopNav() {
         <div className="flex items-center gap-3">
           <Link to={"/"}>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPfa-D_apj9tTVQ7lAirYL2Fg0bh_iFUeFgw&s"
+            src={logo}
             alt="Logo"
-            className="h-12 w-12 rounded-full"  // Increased logo size
+            className="h-12 w-auto rounded-full"  // Increased logo size
           /></Link>
         </div>
 
-        <div className="text-2xl font-bold tracking-wide text-center">  {/* Increased to text-2xl */}
-          krishti
+        <div className="text-3xl font-bold tracking-wide text-center">  {/* Increased to text-2xl */}
+          KRISHTI
         </div>
 
         <div className="flex items-center gap-4">
