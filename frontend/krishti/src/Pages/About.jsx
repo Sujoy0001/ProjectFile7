@@ -47,7 +47,7 @@ export default function About() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 space-y-24">
       {/* SECTION 1: About Me */}
-      <section className="flex flex-col md:flex-row items-center gap-12">
+      <section className="flex flex-col md:flex-row items-center gap-20 justify-between">
         {/* Left - Text */}
         <div className="flex-1">
           <h1 className="text-4xl font-bold mb-6 text-gray-800">About Me</h1>
@@ -72,7 +72,7 @@ export default function About() {
           <img
             src={aboutImg}
             alt="Krishti artist"
-            className="w-full rounded-xl shadow-lg object-cover max-h-[400px]"
+            className="w-auto rounded-xl shadow-lg object-contain max-h-[400px] bg-gray-50 hover:scale-105 transition-transform duration-300 ease-in-out"
           />
         </div>
       </section>

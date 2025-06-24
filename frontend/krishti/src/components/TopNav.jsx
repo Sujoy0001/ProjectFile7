@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/logos/logo.png';
+import { FaPhoneAlt  } from "react-icons/fa";
 
 export default function TopNav() {
   return (
@@ -23,8 +24,9 @@ export default function TopNav() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="block py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-md hover:shadow-none"  // Enhanced button styling
+            className="flex items-center justify-center  py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-md hover:shadow-none"  // Enhanced button styling
           >
+            <FaPhoneAlt  className="inline mr-2" />
             Contact Me
           </Link>
         </div>
