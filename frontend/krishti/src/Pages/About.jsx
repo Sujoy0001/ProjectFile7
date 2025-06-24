@@ -52,7 +52,7 @@ export default function About() {
         <div className="flex-1">
           <h1 className="text-4xl font-bold mb-6 text-gray-800">About Me</h1>
           <p className="text-xl text-gray-700 dark:text-gray-700 leading-relaxed">
-            Hi, I'm <span className="font-bold text-blue-600">Krishti</span>, a
+            <spam className='font-bold text-2xl'>H</spam>i, I'm <span className="font-bold text-blue-600">Krishti</span>, a
             passionate drawing teacher and artist. I specialize in helping
             students develop their skills in sketching, painting, and digital
             art.
@@ -115,7 +115,7 @@ export default function About() {
         {/* Right - Short Description */}
         <div className="flex-1">
           <p className="text-xl text-gray-700 dark:text-gray-700">
-            We are moving forward uninterruptedly days after days, years after
+            <spam className='font-bold text-2xl'>W</spam>e are moving forward uninterruptedly days after days, years after
             years and decades after decades depending on the essence of the word
             ‘creation’ only. Our world is one of the many creations of the
             Almighty in this universe. He has shaped this world into today’s
@@ -131,14 +131,14 @@ export default function About() {
       {/* SECTION 3: Full Width Final Text */}
       <section className="w-full text-left space-y-6">
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          Almighty, while creating this world very tactfully mingled the
+          <spam className='font-bold text-2xl'>A</spam>lmighty, while creating this world very tactfully mingled the
           inanimate objects like hills, rivers and water with the animated
           world. Among those creations, he has made human beings special by his
           delicate and cognitive touches with the belief that, in future they
           will play an active role in his creative works.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          Now, we come to the discussion of ‘art’. Nature has not only destroyed
+          <spam className='font-bold text-2xl'>N</spam>ow, we come to the discussion of ‘art’. Nature has not only destroyed
           but also created innumerable things with his play of destruction and
           reconstruction in an endless manner. We are fascinated by the charming
           beauties of nature. When we come to the discussion of birds, animals
@@ -155,7 +155,7 @@ export default function About() {
           craftsmanship.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          Then, when we come to the creation of art by human beings, we must
+          <spam className='font-bold text-2xl'>T</spam>hen, when we come to the creation of art by human beings, we must
           confess that we are creation of nature. Here we must say that the
           nature is the omnipresent creator of all creative skills. Because by
           taking the ideas from nature we drench our delicate feelings with
@@ -172,7 +172,7 @@ export default function About() {
           place in the era of visual art.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          Barring the real life representation of creative emotions, we also
+          <spam className='font-bold text-2xl'>B</spam>arring the real life representation of creative emotions, we also
           express creativity in the field of our basic needs like foods,
           clothing and lodging uninterruptedly. Whereas we are experimenting new
           flavors in the field of cooking, we are making new designs in the

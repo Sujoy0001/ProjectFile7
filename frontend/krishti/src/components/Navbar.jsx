@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const location = useLocation();
 
@@ -87,11 +88,45 @@ export default function Navbar() {
     setActiveDropdown(activeDropdown === itemName ? null : itemName);
   };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
-    <nav className="bg-white border-b border-gray-100 py-4 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-center relative" ref={dropdownRef}>
-          <div className="flex space-x-8">
+    <nav className="bg-white border-b border-gray-100 py-3 md:py-4 sticky top-0 z-50 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Mobile menu button */}
+        <div className="flex justify-between items-center md:hidden">
+          <button
+            onClick={toggleMobileMenu}
+            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-500 focus:outline-none"
+            aria-expanded="false"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className={`h-6 w-6 ${mobileMenuOpen ? 'hidden' : 'block'}`}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg
+              className={`h-6 w-6 ${mobileMenuOpen ? 'block' : 'hidden'}`}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex justify-center relative" ref={dropdownRef}>
+          <div className="flex space-x-4 lg:space-x-8">
             {navItems.map((item, index) => {
               const isActiveParent =
                 item.url === location.pathname ||
@@ -104,7 +139,7 @@ export default function Navbar() {
                     <>
                       <button
                         onClick={() => toggleDropdown(item.name)}
-                        className={`flex items-center px-3 py-2 text-lg font-medium transition-colors ${
+                        className={`flex items-center px-3 py-2 text-base lg:text-lg font-medium transition-colors ${
                           isActiveParent || activeDropdown === item.name
                             ? "text-yellow-500 font-semibold"
                             : "text-gray-700 hover:text-blue-500"
@@ -129,20 +164,19 @@ export default function Navbar() {
                         </svg>
                       </button>
                       {activeDropdown === item.name && (
-                        <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-150 bg-white rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 z-50 py-3">
-                          <h3 className="px-4 py-3 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                        <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 sm:w-56 md:w-64 bg-white rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 z-50 py-3">
+                          <h3 className="px-4 py-2 text-xs sm:text-lg font-bold text-gray-500 uppercase tracking-wider">
                             {item.name}
                           </h3>
-                          <div className="grid grid-cols-3 gap-2 px-3 py-2">
+                          <div className="grid grid-cols-1 gap-1 px-2 py-1">
                             {item.subItems.map((subItem, subIndex) => (
                               <Link
                                 key={subIndex}
                                 to={subItem.url}
                                 onClick={() => {
-                                  // ✅ Close dropdown after click
                                   setTimeout(() => setActiveDropdown(null), 100);
                                 }}
-                                className={`flex items-center px-2 py-2.5 text-lg font-medium rounded transition-colors justify-center gap-1 ${
+                                className={`flex items-center px-3 py-2 text-sm sm:text-lg font-medium rounded transition-colors ${
                                   location.pathname === subItem.url
                                     ? "text-yellow-500 bg-yellow-50"
                                     : "text-gray-800 hover:text-blue-600 hover:bg-blue-50"
@@ -159,10 +193,92 @@ export default function Navbar() {
                   ) : (
                     <Link
                       to={item.url}
-                      className={`flex items-center px-3 py-2 text-lg font-medium transition-colors ${
+                      className={`flex items-center px-3 py-2 text-base lg:text-lg font-medium transition-colors ${
                         location.pathname === item.url
                           ? "text-yellow-500"
                           : "text-gray-700 hover:text-blue-500"
+                      }`}
+                    >
+                      {item.icon}
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}>
+          <div className="pt-2 pb-3 space-y-1" ref={dropdownRef}>
+            {navItems.map((item, index) => {
+              const isActiveParent =
+                item.url === location.pathname ||
+                (item.subItems &&
+                  item.subItems.some((sub) => sub.url === location.pathname));
+
+              return (
+                <div key={index} className="relative">
+                  {item.subItems ? (
+                    <>
+                      <button
+                        onClick={() => toggleDropdown(item.name)}
+                        className={`flex items-center w-full px-3 py-3 text-base font-medium rounded-md transition-colors ${
+                          isActiveParent || activeDropdown === item.name
+                            ? "text-yellow-500 bg-yellow-50"
+                            : "text-gray-700 hover:text-blue-500 hover:bg-gray-50"
+                        }`}
+                      >
+                        {item.icon}
+                        {item.name}
+                        <svg
+                          className={`w-4 h-4 ml-1 transition-transform ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      {activeDropdown === item.name && (
+                        <div className="pl-6 py-2 space-y-1">
+                          {item.subItems.map((subItem, subIndex) => (
+                            <Link
+                              key={subIndex}
+                              to={subItem.url}
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setTimeout(() => setActiveDropdown(null), 100);
+                              }}
+                              className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+                                location.pathname === subItem.url
+                                  ? "text-yellow-500 bg-yellow-50"
+                                  : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                              }`}
+                            >
+                              <span className="mr-2">{subItem.icon}</span>
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.url}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center px-3 py-3 text-base font-medium rounded-md transition-colors ${
+                        location.pathname === item.url
+                          ? "text-yellow-500 bg-yellow-50"
+                          : "text-gray-700 hover:text-blue-500 hover:bg-gray-50"
                       }`}
                     >
                       {item.icon}
