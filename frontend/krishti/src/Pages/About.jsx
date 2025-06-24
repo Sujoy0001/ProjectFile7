@@ -81,7 +81,7 @@ export default function About() {
       <section className="flex flex-col md:flex-row items-center gap-12">
         {/* Left - Social Icons */}
         <div className="flex-1 space-y-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
             {socials.map((social, index) => (
               <a
                 key={index}

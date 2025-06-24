@@ -19,11 +19,11 @@ export default function Contact() {
     <div className="max-w-6xl mx-auto px-4 py-6">
       <h1 className="text-4xl font-bold mb-14 text-center text-gray-800">Contact Me</h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Form */}
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Send a Message</h2>
-          <form onSubmit={handleSubmit} className="space-y-6" name="contact" netlify>
+          <form onSubmit={handleSubmit} className="space-y-6" name="contact" netlify={true}>
             <div>
               <label className="block mb-2 font-medium text-gray-700">Name</label>
               <input
@@ -89,25 +89,25 @@ export default function Contact() {
             <div className="space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-blue-600 text-xl" />
-                <a href="mailto:animeshday.in@gmail.com" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <a href="mailto:animeshday.in@gmail.com" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
                   animeshday.in@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <FaPhone className="text-blue-600 text-xl" />
-                <a href="tel:+9732172167" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <a href="tel:+9732172167" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
                   +91 9732172167
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <FaGooglePay  className="text-blue-600 text-4xl" />
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">
-                  9999999999
+                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
+                  9080701234
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <FaWhatsapp  className="text-blue-600 text-xl" />
-                <a href="tel:+9732172167" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <a href="tel:+9732172167" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
                   +91 9732172167
                 </a>
               </div>
