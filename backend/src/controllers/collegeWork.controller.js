@@ -5,7 +5,7 @@ import { CollegeWork } from "../models/collegeWork.model.js";
 import { Image } from "../models/images.model.js";
 
 const uploadCollegeWorkImage = asyncHandler(async (req, res) => {
-    const { title, description, titleImg } = req.body;
+    const { title, description } = req.body;
 
     if (!title || !title.trim()) {
         throw new ApiError(400, "Title is required");
@@ -22,7 +22,6 @@ const uploadCollegeWorkImage = asyncHandler(async (req, res) => {
     // Create new image document
     const image = await Image.create({
         url: imagePath,
-        titleImg: titleImg || req.file.originalname,
         description: description || "",
     });
 
@@ -79,13 +78,13 @@ const deleteCollegeWorkImage = asyncHandler(async (req, res) => {
 // Edit College Work image details
 const editCollegeWorkImage = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { titleImg, description } = req.body;
+    const { description } = req.body;
     if (!id) {
         throw new ApiError(400, "College Work ID is required");
     }
 
-    if (!titleImg && !description) {
-        throw new ApiError(400, "At least one field (title or description) is required");
+    if (!description) {
+        throw new ApiError(400, "At least one field (description) is required");
     }
 
     // Find the CollegeWork document
@@ -99,7 +98,6 @@ const editCollegeWorkImage = asyncHandler(async (req, res) => {
     const updatedImage = await Image.findByIdAndUpdate(
         collegeWork.image._id,
         { 
-            titleImg: titleImg || collegeWork.image.titleImg,
             description: description || collegeWork.image.description
         },
         { new: true }
@@ -110,8 +108,40 @@ const editCollegeWorkImage = asyncHandler(async (req, res) => {
     );
 });
 
+const getCollegeWorkByTitle = asyncHandler(async (req, res) => {
+    const { title } = req.params;
+    
+    if (!title || !title.trim()) {
+        throw new ApiError(400, "Title is required");
+    }
+    
+    // Validate the title against the enum values
+    const validTitles = ["model_making", "sand_art", "other"];
+    if (!validTitles.includes(title)) {
+        throw new ApiError(400, "Invalid title value");
+    }
+    
+    // Find all CollegeWork entries with the specified title and populate the image details
+    const collegeWorks = await CollegeWork.find({ title })
+        .populate({
+            path: "image",
+            select: "url description" // Only include these fields from Image
+        })
+        .sort({ createdAt: -1 }); // Sort by newest first
+
+    if (collegeWorks.length === 0) {
+        throw new ApiError(404, `No College Work items found with title '${title}'`);
+    }
+    
+    return res.status(200).json(
+        new ApiResponse(200, collegeWorks, `College Work items with title '${title}' fetched successfully`)
+    );
+});
+
+
 export {
     uploadCollegeWorkImage as uploadImage, 
     deleteCollegeWorkImage as deleteImage, 
-    editCollegeWorkImage as editImage
+    editCollegeWorkImage as editImage,
+    getCollegeWorkByTitle as getCollegeWorkByTitle
 };

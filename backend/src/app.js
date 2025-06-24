@@ -24,7 +24,9 @@ app.use("/api/v1/collegeWork", collegeWorkRouter)
 app.use("/api/v1/user", userRouter)
 
 app.get("/", (_, res) => {
-    res.send("working");
+    res.json({
+        message: "Welcome to the backend API"
+    })
 })
 
 
