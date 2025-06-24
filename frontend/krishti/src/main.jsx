@@ -9,6 +9,8 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import CollegeWorkPage from './Pages/CollegeWorkPage';
 import MyWorkPage from './Pages/MyWorkPage';
+import Login from './Admin/Login';
+import Dashboard from './Admin/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       { path: "/college-work/:category", element: <CollegeWorkPage /> },
     ],
   },
+  {
+    path: "/admin",
+    element: <Login />,
+  },
+  {
+    path: "/admin/dashboard",
+    element: <Dashboard />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
