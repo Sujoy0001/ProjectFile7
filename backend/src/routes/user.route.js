@@ -9,10 +9,10 @@ import { verifyLogin } from "../middlewares/user.middleware.js";
 
 const router = Router();
 
-router.route("/register").post(registerUser);
+router.route("/register").get(registerUser);
 router.route("/login").post(loginUser);
 router.route("/current").get(verifyLogin, currentUser);
-router.route("/logout").post(verifyLogin, logOutUser);
+router.route("/logout").get(verifyLogin, logOutUser);
 
 
 export default router;
