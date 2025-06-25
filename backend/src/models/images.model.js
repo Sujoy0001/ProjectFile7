@@ -5,9 +5,6 @@ const imageSchema = new Schema({
         type: String,
         required: true
     },
-    titleImg: {
-        type: String,
-    },
     description: {
         type: String,
     },

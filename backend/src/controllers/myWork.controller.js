@@ -5,7 +5,7 @@ import { MyWork } from "../models/myWork.model.js";
 import { Image } from "../models/images.model.js";
 
 const uploadImage = asyncHandler(async (req, res) => {
-    const { title, description, titleImg } = req.body;
+    const { title, description } = req.body;
 
     if (!title || !title.trim()) {
         throw new ApiError(400, "Title is required");
@@ -22,7 +22,6 @@ const uploadImage = asyncHandler(async (req, res) => {
     // Create new image document
     const image = await Image.create({
         url: imagePath,
-        titleImg: titleImg || req.file.originalname,
         description: description || "",
     });
 
@@ -79,13 +78,13 @@ const deleteImage = asyncHandler(async (req, res) => {
 // Edit My Work image details
 const editImage = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { titleImg, description } = req.body;
+    const { description } = req.body;
     if (!id) {
         throw new ApiError(400, "My Work ID is required");
     }
 
-    if (!titleImg && !description) {
-        throw new ApiError(400, "At least one field (title or description) is required");
+    if (!description) {
+        throw new ApiError(400, "At least one field (description) is required");
     }
 
     // Find the MyWork document
@@ -99,7 +98,6 @@ const editImage = asyncHandler(async (req, res) => {
     const updatedImage = await Image.findByIdAndUpdate(
         myWork.image._id,
         { 
-            titleImg: titleImg || myWork.image.titleImg,
             description: description || myWork.image.description
         },
         { new: true }
@@ -110,8 +108,39 @@ const editImage = asyncHandler(async (req, res) => {
     );
 });
 
+const getMyWorkByTitle = asyncHandler(async (req, res) => {
+    const { title } = req.params;
+    
+    if (!title || !title.trim()) {
+        throw new ApiError(400, "Title is required");
+    }
+    
+    // Validate the title against the enum values
+    const validTitles = ["design", "logo_design", "mask_making", "book_cover", "other"];
+    if (!validTitles.includes(title)) {
+        throw new ApiError(400, "Invalid title value");
+    }
+    
+    // Find all MyWork entries with the specified title and populate the image details
+    const myWorks = await MyWork.find({ title })
+        .populate({
+            path: "image",
+            select: "url description" // Only include these fields from Image
+        })
+        .sort({ createdAt: -1 }); // Sort by newest first
+
+    if (!myWorks || myWorks.length === 0) {
+        throw new ApiError(404, `No My Work items found with title '${title}'`);
+    }
+    
+    return res.status(200).json(
+        new ApiResponse(200, myWorks, `My Work items with title '${title}' fetched successfully`)
+    );
+});
+
 export {
     uploadImage, 
     deleteImage, 
-    editImage
+    editImage,
+    getMyWorkByTitle
 };
