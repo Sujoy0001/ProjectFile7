@@ -19,52 +19,62 @@ const accessAndRefreshTokenGenrator = async (usedId) => {
     }
 }
 
-const registerUser = asyncHandler(async (req, res) => {
-    const email = process.env.EMAIL
-    const password = process.env.PASSWORD
-    if ([email, password].some((data) => data?.trim() === "")) {
-        throw new ApiError(400, "all fields are requerd")
-    }
-    const existedUser = await User.findOne({
-        $or: [{ email }]
-    })
-    if (existedUser) {
-        throw new ApiError(400, "user alredy existd")
-    }
-    const user = await User.create({
-        email,
-        password
-    })
-    const createUser = await User.findById(user._id).select("-password -refreshToken")
-    if (!createUser) {
-        throw new ApiError(500, "something went wrong")
-    }
-    return res.status(200).json(new ApiResponse(200, createUser, "register successfuly"))
-})
-
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body
-    if (!(email)) {
-        throw new ApiError(400, "all fields are requerd")
-    }
-    const user = await User.findOne({
-        $or: [{ email }]
-    })
-    if (!user) {
-        throw new ApiError(404, "not found")
-    }
-    const isPassword = await user.isPasswordCorrect(password)
-    if (!isPassword) {
-        throw new ApiError(401, "Bad request")
-    }
-    const { accessToken, refereshToken } = await accessAndRefreshTokenGenrator(user._id)
-    const loginUser = await User.findById(user._id).select("-password -refreshToken")
+    const { email, password } = req.body;
 
+    // Validate input
+    if (!email || !password) {
+        throw new ApiError(400, "Email and password are required");
+    }
+
+    // Get environment credentials
+    const envEmail = process.env.EMAIL;
+    const envPassword = process.env.PASSWORD;
+
+    // Verify credentials against environment values
+    if (email !== envEmail || password !== envPassword) {
+        throw new ApiError(401, "Invalid credentials");
+    }
+
+    // Check if user exists
+    let user = await User.findOne({ email });
+
+    if (!user) {
+        // User doesn't exist - create new user
+        user = await User.create({
+            email,
+            password // This should be hashed by your User model pre-save hook
+        });
+    } else {
+        // User exists - verify password
+        const isPasswordValid = await user.isPasswordCorrect(password);
+        if (!isPasswordValid) {
+            throw new ApiError(401, "Invalid credentials");
+        }
+    }
+
+    // Generate tokens
+    const { accessToken, refereshToken } = await accessAndRefreshTokenGenrator(user._id);
+
+    // Get user without sensitive data
+    const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
+
+    // Set cookies and send response
     return res
         .status(200)
         .cookie("accessToken", accessToken, options)
         .cookie("refereshToken", refereshToken, options)
-        .json(new ApiResponse(200, { user: loginUser, refereshToken, accessToken }, "login successfully"))
+        .json(
+            new ApiResponse(
+                200,
+                {
+                    user: loggedInUser,
+                    accessToken,
+                    refereshToken
+                },
+                "Authentication successful"
+            )
+        );
 })
 
 const currentUser = asyncHandler(async (req, res) => {
@@ -89,7 +99,6 @@ const logOutUser = asyncHandler(async (req, res) => {
 
 
 export {
-    registerUser,
     loginUser,
     currentUser,
     logOutUser

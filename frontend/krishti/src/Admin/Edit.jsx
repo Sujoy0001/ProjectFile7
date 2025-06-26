@@ -1,12 +1,13 @@
-// src/pages/Edit.jsx
 import React, { useState, useEffect } from "react";
 import { FiEdit2, FiTrash2, FiX, FiUpload, FiSearch, FiChevronDown } from "react-icons/fi";
+import myWorkStore from "../store/myWorkStore.js";
+import collegeWorkStore from "../store/collegeWorkStore.js";
+import { handleError, handleSuccess } from "../components/ErrorMessage";
 
 const Edit = () => {
-  // Sample data structure
   const categories = {
-    "My Work": ["Project", "Art", "Design", "Poster", "Other"],
-    "College Work": ["Assignment", "Model", "Event"]
+    "My Work": ["design", "logo_design", "mask_making", "book_cover", "other"],
+    "College Work": ["model_making", "sand_art", "other"]
   };
 
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -18,29 +19,45 @@ const Edit = () => {
   const [newImage, setNewImage] = useState(null);
   const [newDescription, setNewDescription] = useState("");
   const [previewImage, setPreviewImage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showSubcategoryDropdown, setShowSubcategoryDropdown] = useState(false);
 
-  // Load sample data when subcategory is selected
+  // Load data when subcategory is selected
   useEffect(() => {
-    if (selectedSubcategory) {
-      setIsLoading(true);
-      // Simulate API call
-      setTimeout(() => {
-        const sampleItems = Array.from({ length: 5 }, (_, i) => ({
-          id: i + 1,
-          name: `${selectedSubcategory} Item ${i + 1}`,
-          imageUrl: `https://source.unsplash.com/random/300x200?sig=${i}`,
-          description: `Description for ${selectedSubcategory.toLowerCase()} item ${i + 1}`,
-          date: new Date(Date.now() - i * 86400000).toISOString().split('T')[0]
-        }));
-        setItems(sampleItems);
-        setIsLoading(false);
-      }, 800);
-    }
-  }, [selectedSubcategory]);
+    const fetchItems = async () => {
+      if (!selectedSubcategory) return;
+      
+      try {
+        if (selectedCategory === "My Work") {
+          await myWorkStore.getState().setMyWorkTitle(selectedSubcategory);
+          const { myWorkTitle } = myWorkStore.getState();
+          setItems(myWorkTitle ? myWorkTitle.map(item => ({
+            id: item._id,
+            name: `${selectedSubcategory} Item`,
+            imageUrl: item.image?.url || '',
+            description: item.image?.description || '',
+            date: new Date(item.createdAt).toISOString().split('T')[0]
+          })) : []);
+        } else if (selectedCategory === "College Work") {
+          await collegeWorkStore.getState().setCollegeWorkTitle(selectedSubcategory);
+          const { collegeWorkTitle } = collegeWorkStore.getState();
+          setItems(collegeWorkTitle ? collegeWorkTitle.map(item => ({
+            id: item._id,
+            name: `${selectedSubcategory} Item`,
+            imageUrl: item.image?.url || '',
+            description: item.image?.description || '',
+            date: new Date(item.createdAt).toISOString().split('T')[0]
+          })) : []);
+        }
+      } catch (error) {
+        handleError(error.message);
+        setItems([]); // Clear items on error
+      }
+    };
+
+    fetchItems();
+  }, [selectedSubcategory, selectedCategory]);
 
   const handleEdit = (item) => {
     setCurrentItem(item);
@@ -55,20 +72,36 @@ const Edit = () => {
     setShowDeleteModal(true);
   };
 
-  const confirmDelete = () => {
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
+  const confirmDelete = async () => {
+    try {
+      if (selectedCategory === "My Work") {
+        await myWorkStore.getState().deleteImage(currentItem.id);
+      } else {
+        await collegeWorkStore.getState().deleteImage(currentItem.id);
+      }
       setItems(items.filter(item => item.id !== currentItem.id));
       setShowDeleteModal(false);
-      setIsLoading(false);
-    }, 500);
+      handleSuccess("Item deleted successfully");
+    } catch (error) {
+      handleError(error.message);
+    }
   };
 
-  const saveEdit = () => {
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
+  const saveEdit = async () => {
+    try {
+      const formData = new FormData();
+      if (newImage) {
+        formData.append('image', newImage);
+      }
+      formData.append('description', newDescription);
+
+      if (selectedCategory === "My Work") {
+        await myWorkStore.getState().editImage(currentItem.id, formData);
+      } else {
+        await collegeWorkStore.getState().editImage(currentItem.id, formData);
+      }
+
+      // Update local state
       setItems(items.map(item => 
         item.id === currentItem.id 
           ? { 
@@ -78,9 +111,12 @@ const Edit = () => {
             } 
           : item
       ));
+      
       setShowEditModal(false);
-      setIsLoading(false);
-    }, 800);
+      handleSuccess("Changes saved successfully");
+    } catch (error) {
+      handleError(error.message);
+    }
   };
 
   const handleImageChange = (e) => {
@@ -95,6 +131,10 @@ const Edit = () => {
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const isLoading = 
+    (selectedCategory === "My Work" && myWorkStore.getState().isLoading) ||
+    (selectedCategory === "College Work" && collegeWorkStore.getState().isLoading);
 
   return (
     <div className={`min-h-screen py-8 px-4 ${(showEditModal || showDeleteModal) ? 'overflow-hidden' : ''}`}>

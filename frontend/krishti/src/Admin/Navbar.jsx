@@ -5,13 +5,16 @@ import { FaUserCircle, FaEdit } from "react-icons/fa";
 import { FiLogOut, FiMenu } from "react-icons/fi";
 import { RiDashboardFill } from "react-icons/ri";
 import logo from "../assets/logos/logo.png";
+import userStore from "../store/userStore";
 
 export default function AdminNavbar({ userName }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { fetchAuth, loginUser, logoutUser } = userStore();
 
   const handleLogout = () => {
+    logoutUser();
     navigate("/");
   };
 
