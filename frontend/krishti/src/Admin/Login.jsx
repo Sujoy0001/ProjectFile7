@@ -1,23 +1,12 @@
 // src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import userStore from '../store/userStore.js';
-import { useEffect } from 'react';
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  const {fetchAuth,registerUser,loginUser,logoutUser,user} = userStore();
-
-  useEffect(() => {
-    fetchAuth();
-
-    
-  }, [fetchAuth])
-
 
   const handleLogin = (e) => {
     e.preventDefault();
