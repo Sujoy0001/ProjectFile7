@@ -1,24 +1,20 @@
 // src/components/AdminNavbar.jsx
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaEdit } from "react-icons/fa";
 import { FiLogOut, FiMenu } from "react-icons/fi";
 import { RiDashboardFill } from "react-icons/ri";
-import PropTypes from "prop-types";
-import logo from "../assets/logos/logo.png"; // Replace with your actual logo path
+import logo from "../assets/logos/logo.png";
 
-export default function AdminNavbar({ userName = "Admin" }) {
+export default function AdminNavbar({ userName }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    // In a real app: clear auth tokens and user data
-    alert("Logged out successfully");
-    navigate("/admin");
+    navigate("/");
   };
 
-  // Highlight current page
   const currentPath = location.pathname;
 
   const navItems = [
@@ -29,27 +25,25 @@ export default function AdminNavbar({ userName = "Admin" }) {
   return (
     <nav className="bg-white border-b border-blue-100 shadow-sm px-6 py-3 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Left: Logo with image */}
+        {/* Left: Logo */}
         <div className="flex items-center space-x-3">
           <Link to="/dashboard" className="flex items-center">
-            <img 
-              src={logo} 
-              alt="Company Logo" 
-              className="h-10 w-auto object-contain"
-            />
-            <span className="ml-3 text-xl font-bold text-blue-800 italic hidden md:block">KRISHTI AdminPanel</span>
+            <img src={logo} alt="Logo" className="h-10 w-auto object-contain" />
+            <span className="ml-3 text-xl font-bold text-blue-800 italic hidden md:block">
+              KRISHTI AdminPanel
+            </span>
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Toggle for mobile */}
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-blue-50 text-blue-800 focus:outline-none"
+          className="md:hidden p-2 rounded-lg hover:bg-blue-50 text-blue-800"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <FiMenu className="text-2xl" />
         </button>
 
-        {/* Center: Links - Desktop */}
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center space-x-1">
           {navItems.map((item) => (
             <Link
@@ -67,15 +61,15 @@ export default function AdminNavbar({ userName = "Admin" }) {
           ))}
         </div>
 
-        {/* Right: User Info + Logout */}
+        {/* User & Logout */}
         <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center space-x-2 text-blue-800">
             <FaUserCircle className="text-2xl" />
-            <span className="font-medium">{userName}</span>
+            <span className="font-medium">{userName || "Admin"}</span>
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center space-x-2 bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200"
+            className="flex items-center space-x-2 bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
           >
             <FiLogOut />
             <span>Logout</span>
@@ -83,7 +77,7 @@ export default function AdminNavbar({ userName = "Admin" }) {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile nav */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-4 pb-4 space-y-2">
           {navItems.map((item) => (
@@ -106,7 +100,7 @@ export default function AdminNavbar({ userName = "Admin" }) {
           <div className="pt-2 border-t border-blue-100">
             <div className="flex items-center px-4 py-3 text-blue-800">
               <FaUserCircle className="text-xl" />
-              <span className="ml-3">{userName}</span>
+              <span className="ml-3">{userName || "Admin"}</span>
             </div>
             <button
               onClick={handleLogout}
@@ -121,7 +115,3 @@ export default function AdminNavbar({ userName = "Admin" }) {
     </nav>
   );
 }
-
-AdminNavbar.propTypes = {
-  userName: PropTypes.string,
-};

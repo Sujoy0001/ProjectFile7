@@ -8,11 +8,19 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thanks for reaching out! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const myForm = event.target;
+    const formData = new FormData(myForm);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+      .then(() => navigate("/thank-you/"))
+      .catch(error => alert(error));
   };
 
   return (
@@ -23,7 +31,7 @@ export default function Contact() {
         {/* Contact Form */}
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Send a Message</h2>
-          <form onSubmit={handleSubmit} className="space-y-6" name="contact" method="POST" data-netlify="true">
+          <form onSubmit={handleSubmit} className="space-y-6" name="contact"  data-netlify="true" method="post">
             <div>
               <label className="block mb-2 font-medium text-gray-700">Name</label>
               <input
