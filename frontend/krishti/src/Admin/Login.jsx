@@ -1,7 +1,8 @@
 // src/pages/Login.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LockClosedIcon, UserIcon } from '@heroicons/react/24/outline';
+import userStore from '../store/userStore.js'
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -9,30 +10,46 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { fetchAuth, loginUser, logoutUser, error: loginError } = userStore();
+
+  useEffect(() => {
+    fetchAuth();
+
+  }, [fetchAuth]);
+
+
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+  e.preventDefault();
+  setError('');
+  setIsLoading(true);
 
-    try {
-      await new Promise((r) => setTimeout(r, 800));
-      if (credentials.username === 'admin' && credentials.password === '1234') {
-        localStorage.setItem('isAuthenticated', 'true');
-        navigate('/dashboard');
-      } else {
-        throw new Error('Invalid username or password');
-      }
-    } catch (err) {
-      setError(err.message);
-      setCredentials((prev) => ({ ...prev, password: '' }));
-    } finally {
-      setIsLoading(false);
-    }
+  const { username, password } = credentials;
+
+  if (!username || !password) {
+    setError('Username and password are required');
+    setIsLoading(false);
+    return;
+  }
+
+  const data = {
+    email: username,
+    password: password,
   };
+
+  try {
+    await loginUser(data); // will throw if login fails
+    navigate('/dashboard');
+  } catch (err) {
+    setError(err?.response?.data?.message || 'Invalid username or password');
+    setCredentials((prev) => ({ ...prev, password: '' }));
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-blue-50 to-blue-100">
@@ -108,9 +125,8 @@ export default function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-2 px-4 rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-200 ${
-              isLoading ? 'opacity-70 cursor-not-allowed' : ''
-            }`}
+            className={`w-full py-2 px-4 rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-200 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''
+              }`}
           >
             {isLoading ? (
               <div className="flex items-center justify-center">

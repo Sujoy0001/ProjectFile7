@@ -1,6 +1,8 @@
 // src/pages/Dashboard.jsx
 import React, { useState, useRef } from 'react';
 import { FiUpload, FiX, FiCheckCircle } from 'react-icons/fi';
+import collegeWorkStore from '../store/collegeWorkStore.js';
+import myWorkStore from '../store/myWorkStore.js';
 
 export default function Dashboard() {
   const [file, setFile] = useState(null);
@@ -12,8 +14,11 @@ export default function Dashboard() {
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const fileInputRef = useRef(null);
 
-  const myWorkSubcats = ['Project', 'Art', 'Design', 'Poster', 'Other'];
-  const collegeWorkSubcats = ['Assignment', 'Model', 'Event'];
+  const { uploadImage: uploadMyWorkImage, isLoading: isMyWorkLoading } = myWorkStore();
+  const { uploadImage: uploadCollegeWorkImage, isLoading: isCollegeLoading } = collegeWorkStore();
+
+  const myWorkSubcats = ["design", "logo_design", "mask_making", "book_cover", "other"];
+  const collegeWorkSubcats = ["model_making", "sand_art", "other"];
 
   const handleFileChange = (e) => {
     const selected = e.target.files[0];
@@ -38,36 +43,37 @@ export default function Dashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!file || !category || !subcategory) {
       alert('Please fill all required fields.');
       return;
     }
-
     setIsSubmitting(true);
 
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log({
-        file,
-        category,
-        subcategory,
-        description,
-      });
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('description', description);
+    formData.append('title', subcategory);
 
-      setUploadSuccess(true);
-      setTimeout(() => {
-        resetForm();
-        setUploadSuccess(false);
-      }, 3000);
-    } catch (error) {
-      console.error('Upload failed:', error);
-      alert('Upload failed. Please try again.');
-    } finally {
-      setIsSubmitting(false);
+    if (category === 'mywork') {
+      await uploadMyWorkImage(formData);
+    } else if (category === 'college') {
+      await uploadCollegeWorkImage(formData);
     }
+
+    
+    console.log({
+      file,
+      category,
+      subcategory,
+      description,
+    });
+    setUploadSuccess(true);
+    setTimeout(() => {
+      resetForm();
+      setUploadSuccess(false);
+    }, 3000);
+    setIsSubmitting(false);
   };
 
   const resetForm = () => {
@@ -117,9 +123,9 @@ export default function Dashboard() {
                   <div className="space-y-1 text-center">
                     {preview ? (
                       <div className="relative">
-                        <img 
-                          src={preview} 
-                          alt="Preview" 
+                        <img
+                          src={preview}
+                          alt="Preview"
                           className="mx-auto max-h-60 rounded-md shadow-sm"
                         />
                         <button
@@ -165,7 +171,7 @@ export default function Dashboard() {
                     id="description"
                     name="description"
                     rows={4}
-                    className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-blue-500 p-4 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                     placeholder="Tell us about your work..."
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -223,9 +229,8 @@ export default function Dashboard() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-                    isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                  }`}
+                  className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                    }`}
                 >
                   {isSubmitting ? (
                     <>
@@ -247,7 +252,7 @@ export default function Dashboard() {
           )}
         </div>
 
-        
+
       </div>
     </div>
   );
