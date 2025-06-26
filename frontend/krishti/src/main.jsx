@@ -13,6 +13,7 @@ import Login from './Admin/Login';
 import Layout2 from './Admin/Layout2';
 import Dashboard from './Admin/Dashboard';
 import Edit from './Admin/Edit';
+import {AuthenticatedUserRoute, ProtectRoute} from './utils/userAuthenticated';
 
 const router = createBrowserRouter([
   {
@@ -28,14 +29,22 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Login />,
+    element: (
+      <AuthenticatedUserRoute>
+        <Login />
+      </AuthenticatedUserRoute>
+  ),
   },
   {
     path: "/dashboard",
-    element: <Layout2 />, 
+    element: (
+      <ProtectRoute>
+        <Layout2 />
+      </ProtectRoute>
+    ),
     children: [
-      { index: true, element: <Dashboard /> },        
-      { path: "Edit", element: <Edit /> }, 
+      { index: true, element: (<ProtectRoute><Dashboard /></ProtectRoute>) },        
+      { path: "Edit", element: (<ProtectRoute><Edit /></ProtectRoute>) }, 
     ],
   }
 ]);
