@@ -10,7 +10,9 @@ import Contact from './Pages/Contact';
 import CollegeWorkPage from './Pages/CollegeWorkPage';
 import MyWorkPage from './Pages/MyWorkPage';
 import Login from './Admin/Login';
+import Layout2 from './Admin/Layout2';
 import Dashboard from './Admin/Dashboard';
+import Edit from './Admin/Edit';
 
 const router = createBrowserRouter([
   {
@@ -29,8 +31,12 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/admin/dashboard",
-    element: <Dashboard />,
+    path: "/dashboard",
+    element: <Layout2 />, 
+    children: [
+      { index: true, element: <Dashboard /> },        
+      { path: "Edit", element: <Edit /> }, 
+    ],
   }
 ]);
 

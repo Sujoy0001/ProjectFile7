@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/logos/logo.png"; // Adjust the path as necessary
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const footerNavs = [
@@ -24,12 +25,11 @@ export default function Footer() {
           </p>
 
           <div className="flex flex-row sm:flex-row items-center justify-center gap-3">
-            <a
-              href="/my-work/design"
+            <Link to="/my-work/design"
               className="w-auto sm:w-auto block py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
             >
               View my work
-            </a>
+            </Link>
             <a
               href="javascript:void(0)"
               className="w-auto sm:w-auto flex items-center justify-center gap-x-2 py-3 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg"
@@ -59,6 +59,9 @@ export default function Footer() {
                 <a href={item.href}>{item.name}</a>
               </li>
             ))}
+            <Link to="/admin" className="text-gray-800 hover:text-gray-500 duration-150">
+              admin 
+            </Link>
           </ul>
         </div>
       </div>
