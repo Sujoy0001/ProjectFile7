@@ -3,6 +3,8 @@ import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { CollegeWork } from "../models/collegeWork.model.js";
 import { Image } from "../models/images.model.js";
+import { uploadOnCloudinary, deleteFromCloudinary, getPublicId } from "../utils/cloudinary.js";
+import mongoose from "mongoose";
 
 const uploadCollegeWorkImage = asyncHandler(async (req, res) => {
     const { title, description } = req.body;
@@ -15,14 +17,27 @@ const uploadCollegeWorkImage = asyncHandler(async (req, res) => {
     if (!req.file) {
         throw new ApiError(400, "Image file is required");
     }
-    
-    // Get the uploaded file path
-    const imagePath = req.file.path;
-    
-    // Create new image document
+
+    const fileMimeType = req.file.mimetype;
+    const base64File = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+    if (!base64File) {
+        throw new ApiError(400, "File is required")
+    }
+    let imageUrl = "";
+    if (fileMimeType.startsWith("image/")) {
+        const postImage = await uploadOnCloudinary(base64File, "image")
+        if (!postImage.url) {
+            throw new ApiError(500, "Something went wrong")
+        }
+        imageUrl = postImage.url
+    } else {
+        throw new ApiError(400, "Only image files are allowed");
+    }
+
+    // Create new image document with Cloudinary URL
     const image = await Image.create({
-        url: imagePath,
-        description: description || "",
+        url: imageUrl,
+        description: description || ""
     });
 
     if (!image) {
@@ -38,11 +53,11 @@ const uploadCollegeWorkImage = asyncHandler(async (req, res) => {
     if (!collegeWork) {
         throw new ApiError(500, "Failed to create CollegeWork document");
     }
-    
+
     // Update the image with CollegeWork reference
     image.collegeWork = collegeWork._id;
     await image.save();
-    
+
     return res.status(201).json(
         new ApiResponse(201, { collegeWork, image }, "College Work image uploaded successfully")
     );
@@ -51,25 +66,31 @@ const uploadCollegeWorkImage = asyncHandler(async (req, res) => {
 // Delete College Work image
 const deleteCollegeWorkImage = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    if (!id) {
-        throw new ApiError(400, "College Work ID is required");
+    if (!mongoose.isValidObjectId(id)) {
+        throw new ApiError(400, "Invalid post id");
     }
-    
-    // Find and delete the CollegeWork document
-    const collegeWork = await CollegeWork.findByIdAndDelete(id);
-    
+
+    // Find the CollegeWork document and populate the image
+    const collegeWork = await CollegeWork.findById(id).populate("image");
+
     if (!collegeWork) {
         throw new ApiError(404, "College Work not found");
     }
-    
-    // Find and delete the associated image
-    const image = await Image.findByIdAndDelete(collegeWork.image);
+
+    if (collegeWork.image) {
+        const publicId = getPublicId(collegeWork.image.url);
+        await deleteFromCloudinary(publicId, "image");
+    }
+
+    // Delete the associated image document
+    const image = await Image.findByIdAndDelete(collegeWork.image._id);
     if (!image) {
         throw new ApiError(404, "Image not found");
     }
-    
-    // Note: In a real application, you would also want to delete the actual image file from storage
-    
+
+    // Finally, delete the CollegeWork document
+    await CollegeWork.findByIdAndDelete(id);
+
     return res.status(200).json(
         new ApiResponse(200, {}, "College Work image deleted successfully")
     );
@@ -79,48 +100,81 @@ const deleteCollegeWorkImage = asyncHandler(async (req, res) => {
 const editCollegeWorkImage = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { description } = req.body;
-    if (!id) {
-        throw new ApiError(400, "College Work ID is required");
-    }
-
-    if (!description) {
-        throw new ApiError(400, "At least one field (description) is required");
+    if (!mongoose.isValidObjectId(id)) {
+        throw new ApiError(400, "Invalid post id");
     }
 
     // Find the CollegeWork document
     const collegeWork = await CollegeWork.findById(id).populate("image");
-    
+
     if (!collegeWork) {
         throw new ApiError(404, "College Work not found");
     }
-    
-    // Update only the image's title and description
+
+    // Handle file upload if a new file is provided
+    let cloudinaryResponse;
+    let newPublicId;
+
+    if (req.file) {
+
+        const fileMimeType = req.file.mimetype;
+        const base64File = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+        if (!base64File) {
+            throw new ApiError(400, "File is required")
+        }
+        // Upload new image to Cloudinary
+        const postImage = await uploadOnCloudinary(base64File, "image")
+        if (!postImage.url) {
+            throw new ApiError(500, "Something went wrong")
+        }
+
+        if (!postImage || !postImage.url) {
+            throw new ApiError(500, "Failed to upload new image to Cloudinary");
+        }
+
+        cloudinaryResponse = postImage.url;
+
+        // Delete old image from Cloudinary
+        if (collegeWork.image?.url) {
+            const publicId = getPublicId(collegeWork.image.url);
+            await deleteFromCloudinary(publicId, "image");
+        }
+    }
+
+    // Update the image document
+    const updateData = {
+        description: description || collegeWork.image.description
+    };
+
+    if (cloudinaryResponse) {
+        updateData.url = cloudinaryResponse;
+    }
+
     const updatedImage = await Image.findByIdAndUpdate(
         collegeWork.image._id,
-        { 
-            description: description || collegeWork.image.description
-        },
+        updateData,
         { new: true }
     );
-    
+
     return res.status(200).json(
-        new ApiResponse(200, { collegeWork, image: updatedImage }, "College Work image details updated successfully")
+        new ApiResponse(200, { collegeWork }, "College Work image details updated successfully")
     );
 });
 
+
 const getCollegeWorkByTitle = asyncHandler(async (req, res) => {
     const { title } = req.params;
-    
+
     if (!title || !title.trim()) {
         throw new ApiError(400, "Title is required");
     }
-    
+
     // Validate the title against the enum values
     const validTitles = ["model_making", "sand_art", "other"];
     if (!validTitles.includes(title)) {
         throw new ApiError(400, "Invalid title value");
     }
-    
+
     // Find all CollegeWork entries with the specified title and populate the image details
     const collegeWorks = await CollegeWork.find({ title })
         .populate({
@@ -132,7 +186,7 @@ const getCollegeWorkByTitle = asyncHandler(async (req, res) => {
     if (collegeWorks.length === 0) {
         throw new ApiError(404, `No College Work items found with title '${title}'`);
     }
-    
+
     return res.status(200).json(
         new ApiResponse(200, collegeWorks, `College Work items with title '${title}' fetched successfully`)
     );
@@ -140,8 +194,8 @@ const getCollegeWorkByTitle = asyncHandler(async (req, res) => {
 
 
 export {
-    uploadCollegeWorkImage as uploadImage, 
-    deleteCollegeWorkImage as deleteImage, 
+    uploadCollegeWorkImage as uploadImage,
+    deleteCollegeWorkImage as deleteImage,
     editCollegeWorkImage as editImage,
     getCollegeWorkByTitle as getCollegeWorkByTitle
 };
