@@ -8,19 +8,11 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const myForm = event.target;
-    const formData = new FormData(myForm);
-
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
-    })
-      .then(() => navigate("/thank-you/"))
-      .catch(error => alert(error));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    alert("Thanks for reaching out! I'll get back to you soon.");
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -31,7 +23,7 @@ export default function Contact() {
         {/* Contact Form */}
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Send a Message</h2>
-          <form onSubmit={handleSubmit} className="space-y-6" name="contact"  data-netlify="true" method="post">
+          <form onSubmit={handleSubmit} className="space-y-6" name="contact" method="POST" data-netlify="true">
             <div>
               <label className="block mb-2 font-medium text-gray-700">Name</label>
               <input
@@ -125,13 +117,13 @@ export default function Contact() {
             <div className="mt-4">
               <h3 className="text-xl font-medium mb-4 text-gray-800">Connect With Me</h3>
               <div className="flex space-x-4">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.facebook.com/animesh.dey.5209/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
                   <FaFacebookF  className="text-xl" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.youtube.com/krishti" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
                   <FaYoutube  className="text-xl" />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.instagram.com/adrish_dastru/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
                   <FaInstagram  className="text-xl" />
                 </a>
               </div>
