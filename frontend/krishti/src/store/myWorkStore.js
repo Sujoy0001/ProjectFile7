@@ -79,10 +79,10 @@ const myWorkStore = create((set) => ({
             if (response.status === 200) {
                 set({ isLoading: false, myWorkTitle: response.data.data });
                 console.log("from store", response.data.data);
-                handleSuccess(response.data.message);
+                // handleSuccess(response.data.message);
             }
         } catch (error) {
-            handleError(error.response?.data?.message || error.message);
+            // handleError(error.response?.data?.message || error.message);
             set({ isLoading: false, error: error.message });
             throw error;
         }

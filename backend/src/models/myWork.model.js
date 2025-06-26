@@ -1,4 +1,5 @@
 import mongoose, {Schema, model} from "mongoose";
+import { myWorkSubcats,collegeWorkSubcats } from "../../../const.js";
 
 const myWorkSchema = new Schema({
     image: {
@@ -7,7 +8,7 @@ const myWorkSchema = new Schema({
     },
     title: {
         type: String,
-        enum: ["design", "logo_design", "mask_making", "book_cover", "other"],
+        enum: myWorkSubcats || ["design", "logo_design", "mask_making", "book_cover", "other"],
         default: "other"
     }
 }, {timestamps: true})

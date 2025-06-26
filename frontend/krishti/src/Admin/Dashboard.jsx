@@ -3,6 +3,8 @@ import React, { useState, useRef } from 'react';
 import { FiUpload, FiX, FiCheckCircle } from 'react-icons/fi';
 import collegeWorkStore from '../store/collegeWorkStore.js';
 import myWorkStore from '../store/myWorkStore.js';
+import {collegeWorkSubcats as college,myWorkSubcats as mywork} from '../../../../const.js';
+import {formatName} from "../constant/constant.js"
 
 export default function Dashboard() {
   const [file, setFile] = useState(null);
@@ -17,8 +19,8 @@ export default function Dashboard() {
   const { uploadImage: uploadMyWorkImage, isLoading: isMyWorkLoading } = myWorkStore();
   const { uploadImage: uploadCollegeWorkImage, isLoading: isCollegeLoading } = collegeWorkStore();
 
-  const myWorkSubcats = ["design", "logo_design", "mask_making", "book_cover", "other"];
-  const collegeWorkSubcats = ["model_making", "sand_art", "other"];
+  const myWorkSubcats = mywork || ["design", "logo_design", "mask_making", "book_cover", "other"];
+  const collegeWorkSubcats = college || ["model_making", "sand_art", "other"];
 
   const handleFileChange = (e) => {
     const selected = e.target.files[0];
@@ -218,7 +220,7 @@ export default function Dashboard() {
                     >
                       <option value="">-- Select Subcategory --</option>
                       {(category === 'mywork' ? myWorkSubcats : collegeWorkSubcats).map((sub, idx) => (
-                        <option key={idx} value={sub.toLowerCase()}>{sub}</option>
+                        <option key={idx} value={sub.toLowerCase()}>{formatName(sub)}</option>
                       ))}
                     </select>
                   </div>

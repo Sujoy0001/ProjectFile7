@@ -3,11 +3,13 @@ import { FiEdit2, FiTrash2, FiX, FiUpload, FiSearch, FiChevronDown } from "react
 import myWorkStore from "../store/myWorkStore.js";
 import collegeWorkStore from "../store/collegeWorkStore.js";
 import { handleError, handleSuccess } from "../components/ErrorMessage";
+import {collegeWorkSubcats,myWorkSubcats} from '../../../../const.js';
+import {formatName} from "../constant/constant.js"
 
 const Edit = () => {
   const categories = {
-    "My Work": ["design", "logo_design", "mask_making", "book_cover", "other"],
-    "College Work": ["model_making", "sand_art", "other"]
+    "My Work": myWorkSubcats || ["design", "logo_design", "mask_making", "book_cover", "other"],
+    "College Work": collegeWorkSubcats || ["model_making", "sand_art", "other"]
   };
 
   const [selectedCategory, setSelectedCategory] = useState(null);

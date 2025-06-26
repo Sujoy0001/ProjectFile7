@@ -5,6 +5,7 @@ import {MyWork} from "../models/myWork.model.js";
 import { Image } from "../models/images.model.js";
 import { uploadOnCloudinary, deleteFromCloudinary, getPublicId } from "../utils/cloudinary.js";
 import mongoose from "mongoose";
+import { myWorkSubcats,collegeWorkSubcats } from "../../../const.js";
 
 const uploadMyWorkImage = asyncHandler(async (req, res) => {
     const { title, description } = req.body;
@@ -170,7 +171,7 @@ const getMyWorkByTitle = asyncHandler(async (req, res) => {
     }
 
     // Validate the title against the enum values
-    const validTitles = ["design", "logo_design", "mask_making", "book_cover", "other"];
+    const validTitles = myWorkSubcats || ["design", "logo_design", "mask_making", "book_cover", "other"];
     if (!validTitles.includes(title)) {
         throw new ApiError(400, "Invalid title value");
     }
