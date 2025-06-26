@@ -11,27 +11,27 @@ import aboutImg from "../assets/logos/Animesh.jpg";
 const socials = [
   {
     name: "Facebook",
-    handle: "@yourprofile",
+    handle: "@animesh.dey.5209",
     icon: <FaFacebookF className="w-6 h-6 text-blue-600" />,
     bg: "bg-blue-50",
     hover: "hover:bg-blue-100",
-    link: "https://facebook.com",
+    link: "https://www.facebook.com/animesh.dey.5209/",
   },
   {
-    name: "Instagram",
+    name: "adrish_dastru",
     handle: "@yourhandle",
     icon: <FaInstagram className="w-6 h-6 text-pink-500" />,
     bg: "bg-pink-50",
     hover: "hover:bg-pink-100",
-    link: "https://instagram.com",
+    link: "https://www.instagram.com/adrish_dastru/",
   },
   {
     name: "YouTube",
-    handle: "@yourchannel",
+    handle: "@krishti",
     icon: <FaYoutube className="w-6 h-6 text-red-500" />,
     bg: "bg-red-50",
     hover: "hover:bg-red-100",
-    link: "https://youtube.com",
+    link: "https://www.youtube.com/krishti",
   },
   {
     name: "Pinterest",
@@ -50,17 +50,13 @@ export default function About() {
       <section className="flex flex-col md:flex-row items-center gap-20 justify-between">
         {/* Left - Text */}
         <div className="flex-1">
-          <h1 className="text-4xl font-bold mb-6 text-gray-800">About Me</h1>
+          <h1 className="text-3xl font-bold mb-6 text-gray-800">About Me</h1>
           <p className="text-xl text-gray-700 dark:text-gray-700 leading-relaxed">
-            <spam className='font-bold text-2xl'>H</spam>i, I'm <span className="font-bold text-blue-600">Krishti</span>, a
-            passionate drawing teacher and artist. I specialize in helping
-            students develop their skills in sketching, painting, and digital
-            art.
+            <spam className='font-semibold text-2xl'>H</spam>i, I'm <span className="font-bold text-blue-600">Animesh Dey</span>,
+            an enthusiastic drawing teacher and artist. I specialize in helping students develop painting, craftwork, and digital art skills.
           </p>
           <p className="mt-4 text-xl text-gray-700 dark:text-gray-700">
-            With years of experience in both creative and academic environments,
-            I guide learners of all levels to express their creativity, build
-            strong portfolios, and complete college assignments with excellence.
+            With years of experience in creative and academic environments, I help students of all levels express their creativity.
           </p>
           <p className="mt-4 text-xl text-gray-700 dark:text-gray-700">
             Let's explore the world of art together!
