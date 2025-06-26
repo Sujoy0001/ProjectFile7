@@ -18,7 +18,7 @@ export default function TopNav() {
           </Link>
         </div>
 
-        <div className="text-xl hidden md:block md:text-3xl font-bold tracking-wide text-center">  {/* Responsive text size */}
+        <div className="text-xl hidden md:block md:text-3xl font-bold tracking-wide text-center text-[#E97451]">  {/* Responsive text size */}
           KRISHTI
         </div>
 

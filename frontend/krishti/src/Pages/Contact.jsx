@@ -100,15 +100,15 @@ export default function Contact() {
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <FaGooglePay  className="text-blue-600 text-4xl" />
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
-                  9080701234
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
                 <FaWhatsapp  className="text-blue-600 text-xl" />
                 <a href="tel:+9732172167" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
                   +91 9732172167
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaGooglePay  className="text-blue-600 text-4xl" />
+                <a className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
+                  9134501272 (Google Pay/Phonepay)
                 </a>
               </div>
             </div>
