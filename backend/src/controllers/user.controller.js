@@ -68,7 +68,7 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const currentUser = asyncHandler(async (req, res) => {
-    return res.status(200).json(new ApiResponse(200, req.user, "successfully"))
+    return res.status(200).json(new ApiResponse(200, req.user ? req.user : null, "successfully"))
 })
 
 const logOutUser = asyncHandler(async (req, res) => {
