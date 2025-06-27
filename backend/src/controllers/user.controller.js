@@ -28,13 +28,21 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 
     // Get environment credentials
-    const envEmail = process.env.EMAIL;
-    const envPassword = process.env.PASSWORD;
+    const userEmail = process.env.USER_EMAIL;
+    const userPassword = process.env.USER_PASSWORD;
+    const developerEmail = process.env.DEVELOPER_EMAIL;
+    const developerPassword = process.env.DEVELOPER_PASSWORD;
 
     // Verify credentials against environment values
-    if (email !== envEmail || password !== envPassword) {
+    const isUser = email === userEmail && password === userPassword;
+    const isDeveloper = email === developerEmail && password === developerPassword;
+    
+    if (!isUser && !isDeveloper) {
         throw new ApiError(401, "Invalid credentials");
     }
+
+    // Determine user role (won't be stored in DB)
+    const role = isDeveloper ? "developer" : "user";
 
     // Check if user exists
     let user = await User.findOne({ email });
@@ -43,7 +51,7 @@ const loginUser = asyncHandler(async (req, res) => {
         // User doesn't exist - create new user
         user = await User.create({
             email,
-            password // This should be hashed by your User model pre-save hook
+            password // Hashed by pre-save hook
         });
     } else {
         // User exists - verify password
@@ -53,7 +61,7 @@ const loginUser = asyncHandler(async (req, res) => {
         }
     }
 
-    // Generate tokens
+    // Generate tokens with your existing function
     const { accessToken, refereshToken } = await accessAndRefreshTokenGenrator(user._id);
 
     // Get user without sensitive data
@@ -70,12 +78,13 @@ const loginUser = asyncHandler(async (req, res) => {
                 {
                     user: loggedInUser,
                     accessToken,
-                    refereshToken
+                    refereshToken,
+                    role // Include role in response
                 },
                 "Authentication successful"
             )
         );
-})
+});
 
 const currentUser = asyncHandler(async (req, res) => {
     return res.status(200).json(new ApiResponse(200, req.user ? req.user : null, "successfully"))
