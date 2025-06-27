@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import { FiUpload, FiX, FiCheckCircle } from 'react-icons/fi';
 import collegeWorkStore from '../store/collegeWorkStore.js';
 import myWorkStore from '../store/myWorkStore.js';
-import {collegeWorkSubcats as college,myWorkSubcats as mywork} from '../../../../const.js';
+import {collegeWorkSubcats as college,myWorkSubcats as mywork} from '../constant/constant.js';
 import {formatName} from "../constant/constant.js"
 
 export default function Dashboard() {

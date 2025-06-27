@@ -5,7 +5,7 @@ import { CollegeWork } from "../models/collegeWork.model.js";
 import { Image } from "../models/images.model.js";
 import { uploadOnCloudinary, deleteFromCloudinary, getPublicId } from "../utils/cloudinary.js";
 import mongoose from "mongoose";
-import { myWorkSubcats,collegeWorkSubcats } from "../../../const.js";
+import { myWorkSubcats,collegeWorkSubcats } from "../constants.js";
 
 const uploadCollegeWorkImage = asyncHandler(async (req, res) => {
     const { title, description } = req.body;

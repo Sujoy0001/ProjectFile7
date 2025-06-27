@@ -1,5 +1,5 @@
 import mongoose, {Schema, model} from "mongoose";
-import { myWorkSubcats,collegeWorkSubcats } from "../../../const.js";
+import { myWorkSubcats,collegeWorkSubcats } from "../constants.js";
 
 const collegeWorkSchema = new Schema({
     image: {
