@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import collegeWorkStore from "../store/collegeWorkStore";
-import {formatName} from "../constant/constant.js"; // Assuming you have this utility function in a separate file
+import { formatName } from "../constant/constant.js";
 
 export default function CollegeWorkPage() {
   const { category } = useParams();
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null); // store entire item
 
   const {
     setCollegeWorkTitle,
@@ -18,8 +18,8 @@ export default function CollegeWorkPage() {
     setCollegeWorkTitle(category);
   }, [category, setCollegeWorkTitle]);
 
-  const openModal = (imgSrc) => {
-    setSelectedImage(imgSrc);
+  const openModal = (item) => {
+    setSelectedItem(item);
     document.body.style.overflow = "hidden";
   };
 
@@ -28,7 +28,7 @@ export default function CollegeWorkPage() {
       e.target === e.currentTarget ||
       e.target.classList.contains("modal-close")
     ) {
-      setSelectedImage(null);
+      setSelectedItem(null);
       document.body.style.overflow = "auto";
     }
   };
@@ -42,7 +42,7 @@ export default function CollegeWorkPage() {
   if (error || !collegeWorkTitle || collegeWorkTitle.length === 0) {
     return (
       <div className="text-center py-20 text-red-500 font-semibold">
-        { "No images found for this category."}
+        {"No images found for this category."}
       </div>
     );
   }
@@ -58,7 +58,7 @@ export default function CollegeWorkPage() {
           <div
             key={item._id}
             className="relative group cursor-pointer"
-            onClick={() => openModal(item.image.url)}
+            onClick={() => openModal(item)}
           >
             <img
               src={item.image.url}
@@ -75,7 +75,7 @@ export default function CollegeWorkPage() {
         ))}
       </div>
 
-      {selectedImage && (
+      {selectedItem && (
         <div
           className="fixed inset-0 bg-opacity-90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
           onClick={closeModal}
@@ -91,7 +91,7 @@ export default function CollegeWorkPage() {
               <button
                 onClick={closeModal}
                 aria-label="Close modal"
-                className="text-gray-900 hover:text-red-500 transition text-3xl modal-close"
+                className="text-gray-900 hover:text-red-500 transition text-4xl font-bold modal-close cursor-pointer"
               >
                 &times;
               </button>
@@ -99,10 +99,18 @@ export default function CollegeWorkPage() {
 
             <div className="p-4">
               <img
-                src={selectedImage}
-                alt="Selected"
+                src={selectedItem.image.url}
+                alt={selectedItem.image.description || "Selected"}
                 className="mx-auto max-h-[75vh] w-full object-contain rounded"
               />
+            </div>
+
+            <div className="p-4 border-t">
+              {selectedItem.image.description && (
+                  <p className="text-gray-900 text-md italic">
+                    {selectedItem.image.description}
+                  </p>
+                )}
             </div>
           </div>
         </div>
