@@ -29,19 +29,19 @@ export default function Navbar() {
       icon: <BriefcaseIcon className="w-5 h-5 mr-1" />,
       subItems: [
         { name: "Design", url: "/my-work/design", icon: "🎨" },
-        { name: "Logo Design", url: "/my-work/logo-design", icon: "🖌️" },
-        { name: "Mask Making", url: "/my-work/mask-making", icon: "🎭" },
-        { name: "Book Cover", url: "/my-work/book-cover", icon: "📚" }, // Changed to book emoji for consistency
-        { name: "Others", url: "/my-work/others", icon: "🧩" },
+        { name: "Logo Design", url: "/my-work/logo_design", icon: "🖌️" },
+        { name: "Mask Making", url: "/my-work/mask_making", icon: "🎭" },
+        { name: "Book Cover", url: "/my-work/book_cover", icon: "📚" }, // Changed to book emoji for consistency
+        { name: "Others", url: "/my-work/other", icon: "🧩" },
       ],
     },
     {
       name: "College Work",
       icon: <AcademicCapIcon className="w-5 h-5 mr-1" />,
       subItems: [
-        { name: "Model Making", url: "/college-work/model", icon: "📐" }, // Changed to ruler emoji
-        { name: "Sand Art", url: "/college-work/sand-art", icon: "🏖️" },
-        { name: "Others", url: "/college-work/others", icon: "🧩" },
+        { name: "Model Making", url: "/college-work/model_making", icon: "📐" }, // Changed to ruler emoji
+        { name: "Sand Art", url: "/college-work/sand_art", icon: "🏖️" },
+        { name: "Others", url: "/college-work/other", icon: "🧩" },
       ],
     },
     {

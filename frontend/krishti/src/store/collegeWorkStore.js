@@ -81,7 +81,7 @@ const collegeWorkStore = create((set) => ({
                 console.log("from store", response.data.data);
             }
         } catch (error) {
-            handleError(error.response?.data?.message || error.message);
+            // handleError(error.response?.data?.message || error.message);
             set({ isLoading: false, error: error.message });
             throw error;
         }
