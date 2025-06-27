@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import myWorkStore from "../store/myWorkStore.js";
 import { formatName } from "../constant/constant.js";
-import ErrorImg from "../assets/images/BkQxD7wtnZ.gif"; // Ensure correct path
+import ErrorImg from "../assets/images/BkQxD7wtnZ.gif";
+import Masonry from "react-masonry-css";
 
 export default function MyWorkPage() {
   const { category } = useParams();
@@ -31,12 +32,6 @@ export default function MyWorkPage() {
     }
   };
 
-  // Debug logs
-  console.log("myWorkTitle:", myWorkTitle);
-  console.log("isLoading:", isLoading);
-  console.log("error:", error);
-  console.log("category:", category);
-
   if (isLoading) {
     return (
       <div className="text-center py-20 text-lg font-semibold text-gray-700">
@@ -63,54 +58,49 @@ export default function MyWorkPage() {
         {formatName(category)}
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-        {myWorkTitle.map((val, idx) => (
-          <div
-            key={val._id}
-            className="group relative w-full h-72 overflow-hidden rounded shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer"
-            onClick={() => openModal(val)}
-          >
-            <img
-              src={val.image.url}
-              alt={val.image.description || `Image ${idx + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <span className="text-white font-medium text-lg truncate">
-                {formatName(val.title)} #{idx + 1}
+    <Masonry
+      breakpointCols={{ default: 3, 1024: 2, 640: 1 }} // Responsive columns
+      className="flex gap-4 md:gap-4 lg:gap-4 mx-auto max-w-7xl px-0 sm:px-6 lg:px-8 py-4" // Increased gap, added max-width and padding
+      columnClassName="bg-clip-padding" // Standard for Masonry
+    >
+      {myWorkTitle.map((val, idx) => (
+        <div
+          key={val._id}
+          className="group relative mb-6 overflow-hidden rounded shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-[1.02]" // Enhanced card styling with hover effects
+          onClick={() => openModal(val)}
+        >
+          {/* Image with overlay effect */}
+          <img
+            src={val.image.url}
+            alt={val.image.description || `Image ${idx + 1}`}
+            className="w-full h-auto object-cover rounded transition-all duration-300 group-hover:opacity-80" // Image Opacity on hover
+          />
+
+          {/* Text Overlay for better presentation */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end p-4">
+            <div classNamename="text-white">
+              <h3 className="text-xl md:text-2xl font-bold mb-1 text-amber-300 italic">
+                {formatName(val.title)}
+              </h3>
+              <span className="text-xs md:text-sm opacity-70 mt-1 block text-amber-100 font-bold italic">
+                Work #{idx + 1}
               </span>
             </div>
-
-            <div className="absolute top-3 right-3 bg-white/90 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-800"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </Masonry>
+
 
       {/* Modal */}
       {selectedItem && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-opacity-90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
           onClick={closeModal}
         >
           <div
-            className="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 relative flex flex-col max-h-screen h-full"
+            className="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 relative"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between p-4 border-b">
@@ -126,8 +116,8 @@ export default function MyWorkPage() {
               </button>
             </div>
 
-            <div className="overflow-y-auto flex-1">
-              <div className="p-4">
+            <div className="flex flex-col max-h-[80vh] overflow-y-auto">
+              <div className="flex-1 p-4">
                 <img
                   src={selectedItem.image.url}
                   alt={selectedItem.image.description || "Selected"}

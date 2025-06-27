@@ -117,13 +117,13 @@ export default function Contact() {
             <div className="mt-2">
               <h3 className="text-xl font-medium mb-4 text-gray-800">Connect With Me</h3>
               <div className="flex space-x-4">
-                <a href="https://www.facebook.com/animesh.dey.5209/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-blue-300 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.facebook.com/animesh.dey.5209/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-blue-700 text-gray-100 hover:bg-yellow-500 transition-colors duration-300">
                   <FaFacebookF  className="text-xl" />
                 </a>
-                <a href="https://www.youtube.com/krishti" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-red-300 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.youtube.com/krishti" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-red-700 text-gray-100 hover:bg-yellow-500 transition-colors duration-300">
                   <FaYoutube  className="text-xl" />
                 </a>
-                <a href="https://www.instagram.com/adrish_dastru/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-purple-300 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.instagram.com/adrish_dastru/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-pink-700 text-gray-100 hover:bg-yellow-500 transition-colors duration-300">
                   <FaInstagram  className="text-xl" />
                 </a>
               </div>

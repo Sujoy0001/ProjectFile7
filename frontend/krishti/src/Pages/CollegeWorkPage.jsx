@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import collegeWorkStore from "../store/collegeWorkStore";
 import { formatName } from "../constant/constant.js";
-import ErrorImg from "../assets/images/BkQxD7wtnZ.gif"
+import ErrorImg from "../assets/images/BkQxD7wtnZ.gif";
+import Masonry from "react-masonry-css";
 
 export default function CollegeWorkPage() {
   const { category } = useParams();
@@ -60,27 +61,38 @@ export default function CollegeWorkPage() {
         {formatName(category)}
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {collegeWorkTitle.map((item, idx) => (
+      <Masonry
+        breakpointCols={{ default: 3, 1024: 2, 640: 1 }} // Responsive columns
+        className="flex gap-4 md:gap-4 lg:gap-4 mx-auto max-w-7xl px-0 sm:px-6 lg:px-8 py-4" // Increased gap, added max-width and padding
+        columnClassName="bg-clip-padding" // Standard for Masonry
+      >
+        {collegeWorkTitle.map((val, idx) => (
           <div
-            key={item._id}
-            className="relative group cursor-pointer"
-            onClick={() => openModal(item)}
+            key={val._id}
+            className="group relative mb-6 overflow-hidden rounded shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-[1.02]" // Enhanced card styling with hover effects
+            onClick={() => openModal(val)}
           >
+            {/* Image with overlay effect */}
             <img
-              src={item.image.url}
-              alt={item.image.description || `${item.title} ${idx + 1}`}
-              className="w-full h-64 object-cover rounded shadow transition-transform duration-300 group-hover:scale-105"
+              src={val.image.url}
+              alt={val.image.description || `Image ${idx + 1}`}
+              className="w-full h-auto object-cover rounded transition-all duration-300 group-hover:opacity-80" // Image Opacity on hover
             />
-
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <span className="text-white font-medium text-lg truncate bg-gray-700 p-2 rounded-b-md opacity-80">
-                {formatName(item.title)} #{idx + 1}
-              </span>
+  
+            {/* Text Overlay for better presentation */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end p-4">
+              <div classNamename="text-white">
+                <h3 className="text-xl md:text-2xl font-bold mb-1 text-amber-300 italic">
+                  {formatName(val.title)}
+                </h3>
+                <span className="text-xs md:text-sm opacity-70 mt-1 block text-amber-100 font-bold italic">
+                  Work #{idx + 1}
+                </span>
+              </div>
             </div>
           </div>
         ))}
-      </div>
+      </Masonry>
 
       {selectedItem && (
         <div
