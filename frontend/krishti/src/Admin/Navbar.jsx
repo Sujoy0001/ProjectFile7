@@ -52,7 +52,7 @@ export default function AdminNavbar({ userName }) {
             <Link
               key={item.path}
               to={item.path}
-              className={`flex items-center px-4 py-2 rounded-lg transition-all duration-200 ${
+              className={`flex items-center px-4 py-2 rounded-lg transition-all duration-200 cursor-pointer ${
                 currentPath === item.path
                   ? "bg-yellow-100 text-yellow-700 font-semibold"
                   : "text-blue-800 hover:bg-blue-50"
@@ -72,7 +72,7 @@ export default function AdminNavbar({ userName }) {
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center space-x-2 bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+            className="flex items-center space-x-2 bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer transition-colors duration-200"
           >
             <FiLogOut />
             <span>Logout</span>

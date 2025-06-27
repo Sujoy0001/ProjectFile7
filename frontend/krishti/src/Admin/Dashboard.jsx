@@ -109,7 +109,7 @@ export default function Dashboard() {
               <p className="mt-1 text-gray-600">Your work has been successfully uploaded.</p>
               <button
                 onClick={() => setUploadSuccess(false)}
-                className="mt-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                className="mt-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer transition-colors duration-200"
               >
                 Upload Another
               </button>
@@ -173,7 +173,7 @@ export default function Dashboard() {
                     id="description"
                     name="description"
                     rows={4}
-                    className="shadow-sm focus:ring-blue-500 p-4 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-blue-500 p-4 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md border-2"
                     placeholder="Tell us about your work..."
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -190,7 +190,7 @@ export default function Dashboard() {
                   <select
                     id="category"
                     name="category"
-                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md border-2"
                     value={category}
                     onChange={(e) => {
                       setCategory(e.target.value);
@@ -213,7 +213,7 @@ export default function Dashboard() {
                     <select
                       id="subcategory"
                       name="subcategory"
-                      className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                      className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md border-2"
                       value={subcategory}
                       onChange={(e) => setSubcategory(e.target.value)}
                       required
@@ -231,7 +231,7 @@ export default function Dashboard() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                     }`}
                 >
                   {isSubmitting ? (

@@ -153,7 +153,7 @@ const Edit = () => {
             <div className="relative">
               <button
               onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
-              className={`w-full sm:w-64 px-4 py-3 text-left flex items-center justify-between rounded-lg border ${
+              className={`w-full sm:w-64 px-4 py-3 text-left flex items-center justify-between rounded-lg border cursor-pointer ${
                 selectedCategory ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
               }`}
             >
@@ -172,7 +172,7 @@ const Edit = () => {
                       setShowCategoryDropdown(false);
                       setShowSubcategoryDropdown(true);
                     }}
-                    className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${
+                    className={`w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer ${
                       selectedCategory === category ? 'bg-blue-50 text-blue-600' : ''
                     }`}
                   >
@@ -190,7 +190,7 @@ const Edit = () => {
             <div className="relative">
               <button
                 onClick={() => setShowSubcategoryDropdown(!showSubcategoryDropdown)}
-                className={`w-full sm:w-64 px-4 py-3 text-left flex items-center justify-between rounded-lg border ${
+                className={`w-full sm:w-64 px-4 py-3 text-left flex items-center justify-between rounded-lg border cursor-pointer ${
                   selectedSubcategory ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
                 }`}
               >
@@ -207,7 +207,7 @@ const Edit = () => {
                         setSelectedSubcategory(subcategory);
                         setShowSubcategoryDropdown(false);
                       }}
-                      className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${
+                      className={`w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer ${
                         selectedSubcategory === subcategory ? 'bg-blue-50 text-blue-600' : ''
                       }`}
                     >
@@ -266,7 +266,7 @@ const Edit = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredItems.map(item => (
-                  <div key={item.id} className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div key={item.id} className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transform transition-transform duration-300 ease-in-out hover:scale-105">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={item.imageUrl} 
@@ -285,14 +285,14 @@ const Edit = () => {
                       <div className="flex justify-end space-x-2">
                         <button 
                           onClick={() => handleEdit(item)}
-                          className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+                          className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors cursor-pointer"
                           aria-label="Edit"
                         >
                           <FiEdit2 size={18} />
                         </button>
                         <button 
                           onClick={() => handleDelete(item)}
-                          className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                          className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors cursor-pointer"
                           aria-label="Delete"
                         >
                           <FiTrash2 size={18} />

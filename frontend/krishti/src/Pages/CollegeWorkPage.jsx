@@ -97,7 +97,8 @@ export default function CollegeWorkPage() {
               </button>
             </div>
 
-            <div className="p-4">
+          <div className="flex flex-col max-h-[80vh] overflow-y-auto">
+            <div className="flex-1 p-4">
               <img
                 src={selectedItem.image.url}
                 alt={selectedItem.image.description || "Selected"}
@@ -105,13 +106,14 @@ export default function CollegeWorkPage() {
               />
             </div>
 
-            <div className="p-4 border-t">
+            <div className="p-2 border-t">
               {selectedItem.image.description && (
-                  <p className="text-gray-900 text-md italic">
-                    {selectedItem.image.description}
-                  </p>
-                )}
+                <p className="mt-0 text-gray-900 text-md italic">
+                  {selectedItem.image.description}
+                </p>
+              )}
             </div>
+          </div>
           </div>
         </div>
       )}

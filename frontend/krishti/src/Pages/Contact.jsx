@@ -84,9 +84,9 @@ export default function Contact() {
           </div>
 
           {/* Contact Details */}
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Contact Information</h2>
-            <div className="space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-blue-600 text-xl" />
                 <a href="mailto:animeshday.in@gmail.com" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
@@ -114,16 +114,16 @@ export default function Contact() {
             </div>
 
             {/* Social Media */}
-            <div className="mt-4">
+            <div className="mt-2">
               <h3 className="text-xl font-medium mb-4 text-gray-800">Connect With Me</h3>
               <div className="flex space-x-4">
-                <a href="https://www.facebook.com/animesh.dey.5209/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.facebook.com/animesh.dey.5209/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-blue-300 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
                   <FaFacebookF  className="text-xl" />
                 </a>
-                <a href="https://www.youtube.com/krishti" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.youtube.com/krishti" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-red-300 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
                   <FaYoutube  className="text-xl" />
                 </a>
-                <a href="https://www.instagram.com/adrish_dastru/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
+                <a href="https://www.instagram.com/adrish_dastru/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-purple-300 text-gray-700 hover:bg-gray-200 transition-colors duration-300">
                   <FaInstagram  className="text-xl" />
                 </a>
               </div>
