@@ -3,7 +3,7 @@ import { FiEdit2, FiTrash2, FiX, FiUpload, FiSearch, FiChevronDown } from "react
 import myWorkStore from "../store/myWorkStore.js";
 import collegeWorkStore from "../store/collegeWorkStore.js";
 import { handleError, handleSuccess } from "../components/ErrorMessage";
-import {collegeWorkSubcats,myWorkSubcats} from '../../../../const.js';
+import {collegeWorkSubcats,myWorkSubcats} from '../constant/constant.js';
 import {formatName} from "../constant/constant.js"
 
 const Edit = () => {
