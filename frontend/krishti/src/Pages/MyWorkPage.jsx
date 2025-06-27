@@ -31,13 +31,21 @@ export default function MyWorkPage() {
   };
 
   if (isLoading) {
-    return <div className="text-center py-20 text-lg font-semibold">Loading...</div>;
+    return (
+      <div className="text-center py-20 text-lg font-semibold text-gray-700">
+        Loading, please wait...
+      </div>
+    )
   }
 
   if (error || !myWorkTitle || myWorkTitle.length === 0) {
     return (
-      <div className="text-center py-20 text-red-500 font-semibold">
-        {"No images found for this category."}
+      <div className="flex flex-col items-center justify-center py-10 text-red-500 font-semibold">
+        <img
+          src={ErrorImg}
+          alt="No image found"
+          className="w-auto h-70 mb-4"
+        />
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import collegeWorkStore from "../store/collegeWorkStore";
 import { formatName } from "../constant/constant.js";
+import ErrorImg from "../assets/images/BkQxD7wtnZ.gif"
 
 export default function CollegeWorkPage() {
   const { category } = useParams();
@@ -35,14 +36,20 @@ export default function CollegeWorkPage() {
 
   if (isLoading) {
     return (
-      <div className="text-center py-20 text-lg font-semibold">Loading...</div>
+      <div className="text-center py-20 text-lg font-semibold text-gray-700">
+        Loading, please wait...
+      </div>
     );
   }
 
   if (error || !collegeWorkTitle || collegeWorkTitle.length === 0) {
     return (
-      <div className="text-center py-20 text-red-500 font-semibold">
-        {"No images found for this category."}
+      <div className="flex flex-col items-center justify-center py-10 text-red-500 font-semibold">
+        <img
+          src={ErrorImg}
+          alt="No image found"
+          className="w-auto h-70 mb-4"
+        />
       </div>
     );
   }
