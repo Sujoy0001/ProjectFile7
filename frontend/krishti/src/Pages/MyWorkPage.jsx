@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import myWorkStore from "../store/myWorkStore.js";
 import { formatName } from "../constant/constant.js";
+import ErrorImg from "../assets/images/BkQxD7wtnZ.gif"; // Ensure correct path
 
 export default function MyWorkPage() {
   const { category } = useParams();
-  const [selectedItem, setSelectedItem] = useState(null); // store full item
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const {
     myWorkTitle,
@@ -19,7 +20,7 @@ export default function MyWorkPage() {
   }, [category, setMyWorkTitle]);
 
   const openModal = (item) => {
-    setSelectedItem(item); // set full object
+    setSelectedItem(item);
     document.body.style.overflow = "hidden";
   };
 
@@ -30,12 +31,18 @@ export default function MyWorkPage() {
     }
   };
 
+  // Debug logs
+  console.log("myWorkTitle:", myWorkTitle);
+  console.log("isLoading:", isLoading);
+  console.log("error:", error);
+  console.log("category:", category);
+
   if (isLoading) {
     return (
       <div className="text-center py-20 text-lg font-semibold text-gray-700">
         Loading, please wait...
       </div>
-    )
+    );
   }
 
   if (error || !myWorkTitle || myWorkTitle.length === 0) {
@@ -60,8 +67,8 @@ export default function MyWorkPage() {
         {myWorkTitle.map((val, idx) => (
           <div
             key={val._id}
-            className="group relative w-full h-72 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer"
-            onClick={() => openModal(val)} // pass full object
+            className="group relative w-full h-72 overflow-hidden rounded shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer"
+            onClick={() => openModal(val)}
           >
             <img
               src={val.image.url}
@@ -98,48 +105,47 @@ export default function MyWorkPage() {
 
       {/* Modal */}
       {selectedItem && (
-      <div
-        className="fixed inset-0 bg-opacity-90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
-        onClick={closeModal}
-      >
         <div
-          className="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 relative flex flex-col max-h-screen h-full"
-          onClick={(e) => e.stopPropagation()}
+          className="fixed inset-0 bg-black bg-opacity-90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
         >
-          <div className="flex items-center justify-between p-4 border-b">
-            <h2 className="text-lg font-semibold text-gray-800">
-              {formatName(category)} - Image
-            </h2>
-            <button
-              onClick={closeModal}
-              aria-label="Close modal"
-              className="text-gray-900 hover:text-red-500 transition text-4xl font-bold close-button cursor-pointer"
-            >
-              &times;
-            </button>
-          </div>
-
-          <div className="overflow-y-auto">
-            <div className="flex-1 p-4">
-              <img
-                src={selectedItem.image.url}
-                alt={selectedItem.image.description || "Selected"}
-                className="mx-auto max-h-[75vh] w-full object-contain rounded"
-              />
+          <div
+            className="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 relative flex flex-col max-h-screen h-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-4 border-b">
+              <h2 className="text-lg font-semibold text-gray-800">
+                {formatName(category)} - Image
+              </h2>
+              <button
+                onClick={closeModal}
+                aria-label="Close modal"
+                className="text-gray-900 hover:text-red-500 transition text-4xl font-bold close-button cursor-pointer"
+              >
+                &times;
+              </button>
             </div>
 
-            <div className="p-2 border-t">
-              {selectedItem.image.description && (
-                <p className="mt-0 text-gray-900 text-md italic">
-                  {selectedItem.image.description}
-                </p>
-              )}
+            <div className="overflow-y-auto flex-1">
+              <div className="p-4">
+                <img
+                  src={selectedItem.image.url}
+                  alt={selectedItem.image.description || "Selected"}
+                  className="mx-auto max-h-[75vh] w-full object-contain rounded"
+                />
+              </div>
+
+              <div className="p-2 border-t">
+                {selectedItem.image.description && (
+                  <p className="mt-0 text-gray-900 text-md italic">
+                    {selectedItem.image.description}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    )}
-
+      )}
     </div>
   );
 }
