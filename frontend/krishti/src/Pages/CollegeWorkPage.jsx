@@ -80,8 +80,8 @@ export default function CollegeWorkPage() {
             />
   
             {/* Text Overlay for better presentation */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end p-4">
-              <div classNamename="text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex items-end p-4">
+              <div className="text-white">
                 <h3 className="text-xl md:text-2xl font-bold mb-1 text-amber-300 italic">
                   {formatName(val.title)}
                 </h3>
