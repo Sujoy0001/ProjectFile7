@@ -18,7 +18,7 @@ const collegeWorkStore = create((set) => ({
             );
             if (response.status === 200) {
                 set({ isLoading: false });
-                console.log("from store", response.data.data);
+                // console.log("from store", response.data.data);
                 handleSuccess(response.data.message);
             }
         } catch (error) {
@@ -78,7 +78,7 @@ const collegeWorkStore = create((set) => ({
             );
             if (response.status === 200) {
                 set({ isLoading: false, collegeWorkTitle: response.data.data });
-                console.log("from store", response.data.data);
+                // console.log("from store", response.data.data);
             }
         } catch (error) {
             // handleError(error.response?.data?.message || error.message);

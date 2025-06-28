@@ -10,7 +10,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     alert("Thanks for reaching out! I'll get back to you soon.");
     setFormData({ name: "", email: "", message: "" });
   };

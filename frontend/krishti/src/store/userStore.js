@@ -19,7 +19,7 @@ const userStore = create((set) => ({
 
             if (response.status === 200) {
                 set({ user: response.data.data, isAuthenticated: true });
-                console.log("from store", response.data.data);
+                // console.log("from store", response.data.data);
                 // handleSuccess(response.data.message);
             } else {
                 set({ user: null, isAuthenticated: false });
@@ -42,7 +42,7 @@ const userStore = create((set) => ({
 
             if (response.status === 200) {
                 // set({ isLoading: false, user: data.data.user, isAuthenticated: true });
-                console.log("from store", response.data.data);
+                // console.log("from store", response.data.data);
                 // handleSuccess(response.data.message);
             } else {
                 set({ user: null, isAuthenticated: false });
@@ -69,7 +69,7 @@ const userStore = create((set) => ({
 
             if (response.status === 200) {
                 set({ isLoading: false, user: response.data.data, isAuthenticated: true });
-                console.log("from store", response.data);
+                // console.log("from store", response.data);
                 // handleSuccess(response.data.message);
             }
         } catch (error) {
@@ -90,7 +90,7 @@ const userStore = create((set) => ({
 
             if (response.status === 200) {
                 set({ user: null, isAuthenticated: false });
-                console.log("from store", response.data);
+                // console.log("from store", response.data);
                 // handleSuccess(response.data.message);
             }
         } catch (error) {

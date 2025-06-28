@@ -36,7 +36,7 @@ const deleteFromCloudinary = async (publicId, type = "image") => {
         const result = await cloudinary.uploader.destroy(publicId, {
             resource_type: type,
         });
-        console.log("successfully deleted from Cloudinary")
+        // console.log("successfully deleted from Cloudinary")
         return result;
     } catch (error) {
         console.error('Error deleting from Cloudinary:', error);

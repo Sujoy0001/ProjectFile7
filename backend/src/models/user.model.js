@@ -60,7 +60,7 @@ userSchema.statics.removeInvalidIndex = async function () {
     try {
         const indexes = await this.collection.getIndexes();
         if (indexes.number_1) {
-            console.log("Removing invalid index 'number_1'");
+            // console.log("Removing invalid index 'number_1'");
             await this.collection.dropIndex("number_1");
         }
     } catch (error) {

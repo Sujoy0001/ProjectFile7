@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/logos/logo.png';
 import { FaPhoneAlt } from "react-icons/fa";
+import QrPopupImage from "./QrPopupImage";
 
 export default function TopNav() {
   return (
@@ -23,16 +24,9 @@ export default function TopNav() {
         </div>
 
         <div className="flex items-center">
-          <Link
-            to="/contact"
-            className="flex items-center justify-center py-3 px-4 md:py-3 md:px-4 text-sm md:text-base text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-md hover:shadow-none"  // Responsive padding and text size
-          >
-            <FaPhoneAlt className="inline mr-1 md:mr-2" />
-            <span className="hidden sm:inline">Contact Me</span>  {/* Hide text on small screens */}
-            <span className="sm:hidden">Contact</span>  {/* Shorter text on small screens */}
-          </Link>
+          <QrPopupImage />  {/* QR Code Popup */}
         </div>
-      </div>
+        </div>
     </nav>
   );
 }
