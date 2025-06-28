@@ -52,7 +52,6 @@ const loginUser = asyncHandler(async (req, res) => {
     user = await User.create({
       email,
       password, // Hashed by pre-save hook
-      role
     });
   } else {
     // User exists - verify password
