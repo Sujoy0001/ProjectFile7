@@ -363,14 +363,14 @@ const Edit = () => {
                 <div className="flex justify-end space-x-4">
                   <button 
                     onClick={() => setShowEditModal(false)}
-                    className="px-6 py-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors text-gray-700"
+                    className="px-6 py-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors text-gray-700 cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button 
                     onClick={saveEdit}
                     disabled={isLoading}
-                    className={`px-6 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-md flex items-center ${
+                    className={`px-6 py-2.5 cursor-pointer bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-md flex items-center ${
                       isLoading ? 'opacity-75 cursor-not-allowed' : ''
                     }`}
                   >
@@ -414,14 +414,14 @@ const Edit = () => {
                 <div className="flex justify-center space-x-4">
                   <button
                     onClick={() => setShowDeleteModal(false)}
-                    className="px-6 py-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors text-gray-700"
+                    className="px-6 py-2.5 border cursor-pointer border-gray-300 rounded-xl hover:bg-gray-50 transition-colors text-gray-700"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={confirmDelete}
                     disabled={isLoading}
-                    className={`px-6 py-2.5 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all shadow-md flex items-center ${
+                    className={`px-6 py-2.5 cursor-pointer bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all shadow-md flex items-center ${
                       isLoading ? 'opacity-75 cursor-not-allowed' : ''
                     }`}
                   >

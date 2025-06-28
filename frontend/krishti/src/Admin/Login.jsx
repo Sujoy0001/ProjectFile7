@@ -125,7 +125,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-2 px-4 rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-200 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''
+            className={`w-full py-2 px-4 rounded-md cursor-pointer text-white bg-blue-600 hover:bg-blue-700 transition duration-200 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''
               }`}
           >
             {isLoading ? (
