@@ -23,7 +23,7 @@ export default function Contact() {
         {/* Contact Form */}
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Send a Message</h2>
-          <form onSubmit={handleSubmit} className="space-y-6" name="contact" method="POST" data-netlify="true">
+          <form onSubmit={handleSubmit} className="space-y-6" name="contact" method="POST" action="https://formspree.io/f/myzjlqow">
             <div>
               <label className="block mb-2 font-medium text-gray-700">Name</label>
               <input
