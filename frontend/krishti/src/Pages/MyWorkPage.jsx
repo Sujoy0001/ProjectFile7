@@ -96,7 +96,7 @@ export default function MyWorkPage() {
       {/* Modal */}
       {selectedItem && (
         <div
-          className="fixed inset-0 bg-opacity-90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-opacity-90 backdrop-blur-xl z-70 flex items-center justify-center p-4"
           onClick={closeModal}
         >
           <div
