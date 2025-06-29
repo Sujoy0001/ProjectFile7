@@ -3,9 +3,11 @@ import { FaWhatsapp, FaGooglePay, FaEnvelope, FaPhone, FaFacebookF, FaYoutube, F
 import { useForm } from '@formspree/react';
 import "../App.css";
 
+
+
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [state, formSubmit] = useForm("myzjlqow"); // replace with your Formspree ID
+  const [state, formSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
