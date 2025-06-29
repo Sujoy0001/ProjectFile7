@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { QrCodeIcon } from "@heroicons/react/24/outline";
-import qrimg from "../assets/images/WhatsApp Image 2025-06-26 at 01.24.55_98d0c15d.jpg"
+import qrimg from "../assets/images/qrcode.jpg"
 
 export default function QrPopupImage() {
   const [isOpen, setIsOpen] = useState(false);

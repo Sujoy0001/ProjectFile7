@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/logos/logo.png';
-import { FaPhoneAlt } from "react-icons/fa";
 import QrPopupImage from "./QrPopupImage";
 
 export default function TopNav() {

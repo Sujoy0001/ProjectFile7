@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import myWorkStore from "../store/myWorkStore.js";
 import { formatName } from "../constant/constant.js";
-import ErrorImg from "../assets/images/BkQxD7wtnZ.gif";
+import ErrorImg from "../assets/images/notfound.gif";
 import Masonry from "react-masonry-css";
 
 export default function MyWorkPage() {

@@ -14,13 +14,15 @@ import Layout2 from './Admin/Layout2';
 import Dashboard from './Admin/Dashboard';
 import Edit from './Admin/Edit';
 import {AuthenticatedUserRoute, ProtectRoute} from './utils/userAuthenticated';
+import NotFound from './Pages/NotFound';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />, 
     children: [
-      { index: true, element: <LandingPage /> },        
+      { index: true, element: <LandingPage /> },    
+      { path: "*", element: <NotFound />},    
       { path: "about", element: <About /> },             
       { path: "contact", element: <Contact /> },  
       { path: "/my-work/:category", element: <MyWorkPage /> },
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
       { index: true, element: (<ProtectRoute><Dashboard /></ProtectRoute>) },        
       { path: "Edit", element: (<ProtectRoute><Edit /></ProtectRoute>) }, 
     ],
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
