@@ -312,7 +312,7 @@ const Edit = () => {
             <div className="relative bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <button
                 onClick={() => setShowEditModal(false)}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-500 transition-colors"
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-500 transition-colors cursor-pointer"
                 aria-label="Close"
               >
                 <FiX size={24} />
@@ -396,7 +396,7 @@ const Edit = () => {
             <div className="relative bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-500 transition-colors"
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-500 transition-colors cursor-pointer"
                 aria-label="Close"
               >
                 <FiX size={24} />

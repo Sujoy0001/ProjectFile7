@@ -86,7 +86,7 @@ function LandingPage() {
     <>
       {/* Hero Section */}
       <section className="container mx-auto px-4 sm:px-6 py-6 md:py-8 text-center">
-        <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 md:mb-6">
+        <p className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 md:mb-6">
           I'm <span className='text-indigo-600'>Animesh Dey</span> <br className="hidden md:block" /> Teacher and Artist
         </p>
         <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-6 md:mb-8">
@@ -243,7 +243,7 @@ function LandingPage() {
             {/* Optional CTA Button */}
             <div className="mt-8 text-center">
               <a href="https://www.youtube.com/@Krishti" target="_blank" rel="noopener noreferrer">
-              <button className="w-auto inline-flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all font-medium sm:font-bold text-sm sm:text-base shadow-lg hover:shadow-xl">
+              <button className="w-auto px-5 py-4 inline-flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all font-medium sm:font-bold text-sm sm:text-base shadow-lg hover:shadow-xl">
                 View All Videos
               </button></a>
             </div>
