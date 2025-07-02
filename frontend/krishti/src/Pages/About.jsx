@@ -4,9 +4,13 @@ import {
   FaInstagram,
   FaYoutube,
   FaPinterestP,
+  FaDownload,
+  FaIdCard
 } from "react-icons/fa";
 
 import aboutImg from "../assets/logos/Animesh.jpg";
+import v from "../assets/logos/V Card.jpg";
+import cv from "../assets/logos/Bio-data.jpg";
 
 const socials = [
   {
@@ -19,7 +23,7 @@ const socials = [
   },
   {
     name: "adrish_dastru",
-    handle: "@yourhandle",
+    handle: "@adrish_dastru",
     icon: <FaInstagram className="w-6 h-6 text-pink-500" />,
     bg: "bg-pink-50",
     hover: "hover:bg-pink-100",
@@ -45,7 +49,7 @@ const socials = [
 
 export default function About() {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16 space-y-24">
+    <div className="max-w-6xl mx-auto px-6 py-12 space-y-24">
       {/* SECTION 1: About Me */}
       <section className="flex flex-col md:flex-row items-center gap-20 justify-between">
         {/* Left - Text */}
@@ -61,6 +65,25 @@ export default function About() {
           <p className="mt-4 text-xl text-gray-700 dark:text-gray-700">
             Let's explore the world of art together!
           </p>
+          <div className="flex flex-col md:flex-row gap-4 mt-8">
+            <a
+              href={cv}
+              download
+              className="flex items-center justify-center w-auto gap-2 px-6 py-3 bg-yellow-50 text-yellow-500 border-2 font-bold rounded-lg transition duration-200 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 cursor-pointer shadow-md hover:shadow-yellow-500/30 active:shadow-inner"
+            >
+              <FaDownload className="h-5 w-5" />
+              Download CV
+            </a>
+
+            <a
+              href={v}
+              download
+              className="flex items-center justify-center w-auto gap-2 px-6 py-3 bg-blue-50 text-blue-500 border-2 font-bold rounded-lg  transition duration-200 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer shadow-md hover:shadow-blue-500/30 active:shadow-inner"
+            >
+              <FaIdCard className="h-5 w-5" />
+              Visiting Card
+            </a>
+          </div>
         </div>
 
         {/* Right - Image */}
@@ -75,7 +98,22 @@ export default function About() {
 
       {/* SECTION 2: Social Links + Description */}
       <section className="flex flex-col md:flex-row items-center gap-12">
-        {/* Left - Social Icons */}
+        {/* left - Short Description */}
+        <div className="flex-1 relative group">
+          <img 
+            src={v} 
+            alt="Visiting Card" 
+            className="w-full h-auto rounded-xl shadow-lg object-cover transition-all duration-300 ease-in-out cursor-pointer
+                      border border-gray-200/50 hover:border-gray-300/70
+                      group-hover:shadow-xl group-hover:brightness-[1.02]
+                      transform group-hover:-translate-y-0.5" 
+          />
+          <div className="absolute inset-0 rounded-xl pointer-events-none 
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-t from-gray-900/5 via-transparent to-transparent" />
+        </div>
+
+        {/* right - Social Icons */}
         <div className="flex-1 space-y-6">
           <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
             {socials.map((social, index) => (
@@ -107,25 +145,21 @@ export default function About() {
             Let's create something amazing together!
           </p>
         </div>
-
-        {/* Right - Short Description */}
-        <div className="flex-1">
-          <p className="text-xl text-gray-700 dark:text-gray-700">
-            <samp className='font-bold text-2xl'>W</samp>e are moving forward uninterruptedly days after days, years after
-            years and decades after decades depending on the essence of the word
-            ‘creation’ only. Our world is one of the many creations of the
-            Almighty in this universe. He has shaped this world into today’s
-            matured one through ups and downs of time. In this divers play of
-            creation we have not only discovered many unique things, we have
-            also lost many. Though, an old one passes away to make room for a
-            new one in keeping with the dictum ‘one that has a life, must die’.
-            Yet, we try harder and harder to keep the reminiscences of the past.
-          </p>
-        </div>
       </section>
 
       {/* SECTION 3: Full Width Final Text */}
       <section className="w-full text-left space-y-6">
+        <p className="text-xl text-gray-700 dark:text-gray-700">
+          <samp className='font-bold text-2xl'>W</samp>e are moving forward uninterruptedly days after days, years after
+          years and decades after decades depending on the essence of the word
+          ‘creation’ only. Our world is one of the many creations of the
+          Almighty in this universe. He has shaped this world into today’s
+          matured one through ups and downs of time. In this divers play of
+          creation we have not only discovered many unique things, we have
+          also lost many. Though, an old one passes away to make room for a
+          new one in keeping with the dictum ‘one that has a life, must die’.
+          Yet, we try harder and harder to keep the reminiscences of the past.
+        </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
           <samp className='font-bold text-2xl'>A</samp>lmighty, while creating this world very tactfully mingled the
           inanimate objects like hills, rivers and water with the animated
