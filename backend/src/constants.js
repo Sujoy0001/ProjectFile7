@@ -5,5 +5,29 @@ export const options = {
     sameSite: 'None'
 }
 
-export const myWorkSubcats = ["design", "logo_design", "mask_making", "book_cover", "other"];
-export const collegeWorkSubcats = ["model_making", "sand_art", "other"];
+export const myWorkSubcats = [
+  "design",
+  "photoshop_work",
+  "painting",
+  "fabric_painting",
+  "craft_work",
+  "photography",
+  "others",
+];
+
+export const collegeWorkSubcats = [
+  "painting",
+  "batik_work",
+  "pencil_sketch",
+  "screen_printing",
+  "book_cover_design",
+  "mask_making",
+  "logo_making",
+  "design",
+  "jute_bag_making",
+  "glass_painting",
+  "sand_art_design",
+  "tie_dye",
+  "woodcut_painting",
+  "others",
+];
