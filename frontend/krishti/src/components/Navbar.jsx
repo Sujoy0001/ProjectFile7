@@ -110,7 +110,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-100 py-4 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white border-b border-gray-100 py-4 sticky top-0 z-40 shadow-sm">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center relative" ref={dropdownRef}>
 
@@ -210,7 +210,7 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="lg:hidden fixed inset-0 bg-white bg-opacity-95 z-40 flex flex-col items-center py-10 px-6 overflow-y-auto"
+          className="lg:hidden fixed inset-0 bg-white bg-opacity-95 flex flex-col items-center py-10 px-6 overflow-y-auto"
         >
           <button
             onClick={toggleMobileMenu}

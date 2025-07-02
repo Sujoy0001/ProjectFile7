@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { QrCodeIcon } from "@heroicons/react/24/outline";
-import qrimg from "../assets/images/qrcode.jpg"
+import qrimg from "../assets/images/qrcode.jpg";
 
 export default function QrPopupImage() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ export default function QrPopupImage() {
   }, [isOpen]);
 
   return (
-    <div className="flex flex-col items-center justify-center z-50">
+    <div className="flex flex-col items-center justify-center">
       <button
         onClick={openPopup}
         className="flex justify-center items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 cursor-pointer shadow-lg hover:shadow-xl active:shadow-md"
@@ -38,7 +38,7 @@ export default function QrPopupImage() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 z-50 backdrop-blur-sm bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full mx-4 relative">
             <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
               Scan QR Code
