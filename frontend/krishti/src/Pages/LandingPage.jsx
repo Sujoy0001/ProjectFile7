@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import myImage from "../assets/logos/Animesh.jpg"
 import { PaintBrushIcon, PhotoIcon, FilmIcon, SwatchIcon } from '@heroicons/react/24/solid'
-import img1 from "../assets/images/design/DESIGN 1.JPG"
-import img2 from "../assets/images/design/DESIGN 2.JPG"
-import img3 from "../assets/images/design/DESIGN 5.JPG"
+import img1 from "../assets/images/dit/Untitled-1.jpg"
+import img2 from "../assets/images/dit/Untitled-2.jpg"
+import img3 from "../assets/images/dit/Untitled-3.jpg"
+import img4 from "../assets/images/dit/Untitled-4.jpg"
+import img5 from "../assets/images/dit/Untitled-5.jpg"
 import cv from "../assets/logos/Bio-data.jpg"
 
 const images = [
-  img1, img2, img3,
+  img1, img2, img3, img4, img5
 ];
 
 const skills = [
@@ -120,19 +122,28 @@ function LandingPage() {
         {/* Image Slider */}
         <div className="mt-8 sm:mt-12 mx-auto relative group w-full max-w-2xl lg:max-w-4xl xl:max-w-5xl aspect-video">
           <div className="relative w-full h-full overflow-hidden rounded-lg sm:rounded-xl shadow-xl">
-            <img
-              src={images[current]}
-              alt={`Slide ${current + 1}`}
-              className="w-full h-full object-cover transition-opacity duration-700 ease-out"
-              key={current}
-            />
+            {/* Previous Image (sliding out) */}
+            {images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Slide ${index + 1}`}
+                className={`absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 ease-in-out ${
+                  index === current
+                    ? 'translate-x-0 z-10'
+                    : index === (current - 1 + images.length) % images.length
+                    ? '-translate-x-full z-0'
+                    : 'translate-x-full z-0'
+                }`}
+              />
+            ))}
             
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent z-20"></div>
           </div>
 
           <button
             onClick={prevSlide}
-            className="absolute top-1/2 left-2 sm:left-4 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg p-2 sm:p-3 z-10 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 hover:shadow-xl"
+            className="absolute top-1/2 left-2 sm:left-4 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg p-2 sm:p-3 z-30 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 hover:shadow-xl"
             aria-label="Previous slide"
           >
             <HiChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
@@ -140,13 +151,13 @@ function LandingPage() {
 
           <button
             onClick={nextSlide}
-            className="absolute top-1/2 right-2 sm:right-4 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg p-2 sm:p-3 z-10 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 hover:shadow-xl"
+            className="absolute top-1/2 right-2 sm:right-4 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg p-2 sm:p-3 z-30 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 hover:shadow-xl"
             aria-label="Next slide"
           >
             <HiChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
           </button>
 
-          <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3 z-10">
+          <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3 z-30">
             {images.map((_, index) => (
               <button
                 key={index}
@@ -161,7 +172,7 @@ function LandingPage() {
             ))}
           </div>
 
-          <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 bg-black/50 text-white text-xs sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full z-10">
+          <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 bg-black/50 text-white text-xs sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full z-30">
             {current + 1} / {images.length}
           </div>
         </div>
