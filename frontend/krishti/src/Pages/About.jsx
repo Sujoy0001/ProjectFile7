@@ -12,6 +12,9 @@ import aboutImg from "../assets/logos/Animesh.jpg";
 import v from "../assets/logos/V Card.jpg";
 import cv from "../assets/logos/Bio-data.jpg";
 
+import p from "../assets/images/Parents-1.jpg";
+import p1 from "../assets/images/Parents-2.jpg";
+
 const socials = [
   {
     name: "Facebook",
@@ -49,7 +52,7 @@ const socials = [
 
 export default function About() {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 space-y-24">
+    <div className="max-w-6xl mx-auto px-6 py-12 space-y-16">
       {/* SECTION 1: About Me */}
       <section className="flex flex-col md:flex-row items-center gap-20 justify-between">
         {/* Left - Text */}
@@ -146,10 +149,34 @@ export default function About() {
           </p>
         </div>
       </section>
+
+        <section className="w-full relative">
+        {/* Mobile Image (shows only on mobile) */}
+        <div className="md:hidden">
+          <img
+            src={p1}
+            alt="Mobile optimized content"
+            className="w-full h-auto object-cover rounded-lg shadow-sm transition duration-300 transform hover:scale-[1.03] cursor-pointer"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Desktop/Tablet/4K Image (shows on larger screens) */}
+        <div className="hidden md:block">
+          <picture>
+            <img
+              src={p}
+              alt="Desktop optimized content"
+              className="w-full h-auto object-cover rounded-lg shadow-md transition duration-300 transform hover:scale-[1.03] cursor-pointer"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+      </section>
       
 
       {/* SECTION 3: Full Width Final Text */}
-      <section className="w-full text-left space-y-6">
+      <section className="w-full text-left space-y-4">
         <p className="text-xl text-gray-700 dark:text-gray-700">
           <samp className='font-bold text-2xl'>W</samp>e are moving forward uninterruptedly days after days, years after
           years and decades after decades depending on the essence of the word
