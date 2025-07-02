@@ -146,6 +146,7 @@ export default function About() {
           </p>
         </div>
       </section>
+      
 
       {/* SECTION 3: Full Width Final Text */}
       <section className="w-full text-left space-y-6">

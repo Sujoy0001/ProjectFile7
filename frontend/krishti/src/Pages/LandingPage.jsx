@@ -202,6 +202,43 @@ function LandingPage() {
         </div>
       </section>
 
+      <section className="w-full py-4 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+                Featured Videos
+              </h2>
+              <p className="mt-2 text-lg text-gray-600">
+                Watch our latest content
+              </p>
+            </div>
+
+            {/* Video Grid - Single Column on mobile, 3 columns on desktop */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Video 1 */}
+              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">               
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/R3tyw4r-ILA?si=aHfbFJgVFnVBJhfy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>               
+              </div>
+              {/* Video 2 - Duplicate and modify for additional videos */}
+              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"> 
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/CxQha8fWmwc?si=5BOdUwe5vnR_3SPH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>               
+              </div>
+              {/* Video 3 - Duplicate and modify for additional videos */}
+              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/uJzeY69MRGM?si=e7aDcBdyGqUDS5Du" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+             </div>
+            </div>
+            {/* Optional CTA Button */}
+            <div className="mt-8 text-center">
+              <a href="https://www.youtube.com/@Krishti" target="_blank" rel="noopener noreferrer">
+              <button className="w-auto inline-flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all font-medium sm:font-bold text-sm sm:text-base shadow-lg hover:shadow-xl">
+                View All Videos
+              </button></a>
+            </div>
+          </div>
+      </section>
+
       {/* Quote Section */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-gray-900 tracking-tight">
