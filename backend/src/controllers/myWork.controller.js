@@ -193,10 +193,40 @@ const getMyWorkByTitle = asyncHandler(async (req, res) => {
     );
 });
 
+// Add this function to your myWork.controller.js
+const getLatestMyWorkImages = asyncHandler(async (req, res) => {
+    // Find the latest 6 MyWork entries and populate their associated images
+    const latestMyWorks = await MyWork.find({})
+        .sort({ createdAt: -1 }) // Sort by newest first
+        .limit(6) // Limit to 6 entries
+        .populate({
+            path: 'image',
+            select: 'url description' // Only include these fields from Image
+        })
+        .exec();
+
+    if (!latestMyWorks || latestMyWorks.length === 0) {
+        throw new ApiError(404, "No My Work images found");
+    }
+
+    // Extract the images with their associated MyWork titles
+    const result = latestMyWorks.map(item => ({
+        _id: item._id,
+        title: item.title,
+        image: item.image
+    }));
+
+    return res.status(200).json(
+        new ApiResponse(200, result, "Latest 6 My Work images fetched successfully")
+    );
+});
+
+
 
 export {
     uploadMyWorkImage as uploadImage,
     deleteMyWorkImage as deleteImage,
     editMyWorkImage as editImage,
-    getMyWorkByTitle as getMyWorkByTitle
+    getMyWorkByTitle as getMyWorkByTitle,
+    getLatestMyWorkImages as getLatestMyWorkImages  
 };

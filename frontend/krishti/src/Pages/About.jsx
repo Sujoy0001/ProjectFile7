@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -7,6 +7,7 @@ import {
   FaDownload,
   FaIdCard
 } from "react-icons/fa";
+import myWorkStore from "../store/myWorkStore.js";
 
 import aboutImg from "../assets/logos/Animesh.jpg";
 import v from "../assets/logos/V Card.jpg";
@@ -51,6 +52,16 @@ const socials = [
 ];
 
 export default function About() {
+  const {myWorkNewImages, setMyWorkNewImages} = myWorkStore();
+  useEffect(() => {
+    setMyWorkNewImages();
+
+    return () => {
+      setMyWorkNewImages();
+    }
+  }, [])
+  console.log("myWorkNewImages", myWorkNewImages);
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 space-y-16">
       {/* SECTION 1: About Me */}
