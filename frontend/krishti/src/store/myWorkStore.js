@@ -99,7 +99,7 @@ const myWorkStore = create((set) => ({
             );
             if (response.status === 200) {
                 set({ isLoading: false, myWorkNewImages: response.data.data });
-                console.log("from store", response.data.data);
+                // console.log("from store", response.data.data);
                 // handleSuccess(response.data.message);
             }
         } catch (error) {

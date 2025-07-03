@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import myImage from "../assets/logos/Animesh.jpg"
 import { PaintBrushIcon, PhotoIcon, FilmIcon, SwatchIcon } from '@heroicons/react/24/solid'
+import myWorkStore from "../store/myWorkStore";
 import img1 from "../assets/images/dit/Untitled-1.jpg"
 import img2 from "../assets/images/dit/Untitled-2.jpg"
 import img3 from "../assets/images/dit/Untitled-3.jpg"
@@ -81,6 +82,17 @@ function LandingPage() {
 
     return () => clearInterval(intervalId);
   }, []);
+
+   
+  const {myWorkNewImages, setMyWorkNewImages} = myWorkStore();
+
+  useEffect(() => {
+    setMyWorkNewImages();
+
+    return () => {
+      setMyWorkNewImages();
+    }
+  }, [])
 
   return (
     <>
@@ -179,7 +191,7 @@ function LandingPage() {
       </section>
 
       {/* Skills Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-8">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           <div className="w-full lg:w-3/5 order-2 lg:order-1">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-gray-900 tracking-tight leading-tight">
@@ -212,6 +224,68 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      <section className="container mx-auto px-4 py-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+            Latest Work
+          </h2>
+          <p className="mt-2 text-lg text-gray-600">
+            Explore my most recent creative work.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {myWorkNewImages?.length ? (
+            myWorkNewImages.map((val) => (
+              <figure
+                key={val._id}
+                className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <img
+                  src={val.image.url}
+                  alt={val.image.description || `Gallery image ${val._id}`}
+                  className="w-full h-72 object-cover cursor-pointer transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width={300}
+                  height={300}
+                />
+
+                <figcaption className="absolute cursor-pointer inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white text-lg font-semibold italic line-clamp-2">
+                    {val.title}
+                  </p>
+                </figcaption>
+              </figure>
+            ))
+          ) : (
+            <div className="col-span-full py-12 text-center">
+              <div className="mx-auto max-w-md space-y-4">
+                <svg
+                  className="mx-auto h-12 w-12 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                <h3 className="text-lg font-medium text-gray-900">
+                  No images found
+                </h3>
+                <p className="text-gray-500">
+                  Upload some images to get started
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       
       <section className="w-full py-4 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -226,18 +300,18 @@ function LandingPage() {
             </div>
 
             {/* Video Grid - Single Column on mobile, 3 columns on desktop */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Video 1 */}
               <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">               
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/R3tyw4r-ILA?si=aHfbFJgVFnVBJhfy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>               
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/R3tyw4r-ILA?si=aHfbFJgVFnVBJhfy" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>               
               </div>
               {/* Video 2 - Duplicate and modify for additional videos */}
               <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"> 
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/CxQha8fWmwc?si=5BOdUwe5vnR_3SPH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>               
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/CxQha8fWmwc?si=5BOdUwe5vnR_3SPH" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>               
               </div>
               {/* Video 3 - Duplicate and modify for additional videos */}
               <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/uJzeY69MRGM?si=e7aDcBdyGqUDS5Du" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/uJzeY69MRGM?si=e7aDcBdyGqUDS5Du" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
              </div>
             </div>
             {/* Optional CTA Button */}
