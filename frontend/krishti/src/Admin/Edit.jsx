@@ -226,7 +226,7 @@ const Edit = () => {
           <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
               <h2 className="text-2xl font-bold text-gray-800">
-                {selectedSubcategory} Projects
+                {formatName(selectedSubcategory)} Projects
                 <span className="ml-2 text-sm font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
                   {filteredItems.length} items
                 </span>

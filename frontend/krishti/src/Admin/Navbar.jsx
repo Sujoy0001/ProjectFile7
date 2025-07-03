@@ -13,8 +13,8 @@ export default function AdminNavbar({ userName }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { fetchAuth, loginUser, logoutUser } = userStore();
 
-  const handleLogout = () => {
-    logoutUser();
+  const handleLogout = async () => {
+    await logoutUser();
     navigate("/");
   };
 

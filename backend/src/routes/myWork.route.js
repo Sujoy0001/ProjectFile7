@@ -3,7 +3,8 @@ import {
     uploadImage, 
     deleteImage, 
     editImage,
-    getMyWorkByTitle
+    getMyWorkByTitle,
+    getLatestMyWorkImages
 } from "../controllers/myWork.controller.js";
 import { verifyLogin } from "../middlewares/user.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js"
@@ -14,5 +15,6 @@ router.route("/upload").post(verifyLogin, upload.single("image"), uploadImage);
 router.route("/delete/:id").delete(verifyLogin, deleteImage);
 router.route("/edit/:id").put(verifyLogin, upload.single("image"), editImage);
 router.route("/title/:title").get(getMyWorkByTitle);
+router.route("/latest").get(getLatestMyWorkImages);
 
 export default router;

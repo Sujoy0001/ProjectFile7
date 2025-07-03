@@ -86,6 +86,27 @@ const myWorkStore = create((set) => ({
             set({ isLoading: false, error: error.message });
             throw error;
         }
+    },
+    myWorkNewImages : null,
+    setMyWorkNewImages: async () => {
+        set({ isLoading: true, error: null });
+        try {
+            const response = await axios.get(
+                `${import.meta.env.VITE_BACKEND_URL}/myWork/latest`,
+                {
+                    withCredentials: true,
+                }
+            );
+            if (response.status === 200) {
+                set({ isLoading: false, myWorkNewImages: response.data.data });
+                console.log("from store", response.data.data);
+                // handleSuccess(response.data.message);
+            }
+        } catch (error) {
+            // handleError(error.response?.data?.message || error.message);
+            set({ isLoading: false, error: error.message });
+            throw error;
+        }
     }
 }))
 
