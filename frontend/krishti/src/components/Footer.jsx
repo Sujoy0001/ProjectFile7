@@ -12,7 +12,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="pt-10">
+    <footer className="pt-2">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8 text-gray-600">
         <div className="space-y-6 sm:max-w-md sm:mx-auto sm:text-center">
           <img
@@ -52,7 +52,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 py-10 border-t flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
-          <p className="text-center sm:text-left">© {new Date().getFullYear()} Krishti. All rights reserved.</p>
+          <p className="text-center sm:text-left">Copyright © {new Date().getFullYear()} animeshdey.in - All Rights Reserved.</p>
           <ul className="flex flex-wrap items-center justify-center sm:justify-end gap-4 text-sm">
             {footerNavs.map((item, idx) => (
               <li key={idx} className="text-gray-800 hover:text-gray-500 duration-150">
