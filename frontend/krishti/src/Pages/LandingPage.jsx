@@ -225,7 +225,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full px-4 py-8">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
             Latest Work
