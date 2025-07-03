@@ -3,7 +3,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaYoutube,
-  FaPinterestP,
+  FaTwitter,
   FaDownload,
   FaIdCard
 } from "react-icons/fa";
@@ -41,12 +41,12 @@ const socials = [
     link: "https://www.youtube.com/krishti",
   },
   {
-    name: "Pinterest",
-    handle: "@yourboards",
-    icon: <FaPinterestP className="w-6 h-6 text-red-400" />,
+    name: "Twitter",
+    handle: "@deyanimeshdey",
+    icon: <FaTwitter className="w-6 h-6 text-red-400" />,
     bg: "bg-rose-50",
     hover: "hover:bg-rose-100",
-    link: "https://pinterest.com",
+    link: "https://x.com/deyanimeshdey?t=_qdE8MAJzB93h2pcyAE-ZA&s=09",
   },
 ];
 
@@ -54,43 +54,28 @@ export default function About() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 space-y-16">
       {/* SECTION 1: About Me */}
-      <section className="flex flex-col md:flex-row items-center gap-20 justify-between">
+      <section className="flex flex-col lg:flex-row items-center gap-10 justify-between">
         {/* Left - Text */}
         <div className="flex-1">
           <h1 className="text-3xl font-bold mb-6 text-gray-800">About Me</h1>
-          <p className="text-xl text-gray-700 dark:text-gray-700 leading-relaxed">
+          <p className="font-semibold italic text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
             <samp className='font-semibold text-2xl'>H</samp>i, I'm <span className="font-bold text-blue-600">Animesh Dey</span>,
             an enthusiastic drawing teacher and artist. I specialize in helping students develop painting, craftwork, and digital art skills.
           </p>
-          <p className="mt-4 text-xl text-gray-700 dark:text-gray-700">
-            With years of experience in creative and academic environments, I help students of all levels express their creativity.
+          <p className="mt-2 font-semibold italic text-lg text-gray-700 dark:text-gray-800">
+           I live in Birsingh, a remote village in Bankura district of West Bengal, India. I have had a deep love for art since childhood. After graduating from Sonamukhi College under Burdwan University, I joined an art college (College of Art and Design) in Burdwan in 2009. After studying visual arts for two years, I completed my D.V.A. in 2011 with 1st class 1st.
           </p>
-          <p className="mt-4 text-xl text-gray-700 dark:text-gray-700">
-            Let's explore the world of art together!
+          <p className="mt-2 font-semibold italic text-lg text-gray-700 dark:text-gray-800">
+            Later, I worked on several government projects. I worked as a master trainer in design training for weavers and taught hand batik to college girls for skill development in various government projects.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 mt-8">
-            <a
-              href={cv}
-              download
-              className="flex items-center justify-center w-auto gap-2 px-6 py-3 bg-yellow-50 text-yellow-500 border-2 font-bold rounded-lg transition duration-200 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 cursor-pointer shadow-md hover:shadow-yellow-500/30 active:shadow-inner"
-            >
-              <FaDownload className="h-5 w-5" />
-              Download CV
-            </a>
-
-            <a
-              href={v}
-              download
-              className="flex items-center justify-center w-auto gap-2 px-6 py-3 bg-blue-50 text-blue-500 border-2 font-bold rounded-lg  transition duration-200 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer shadow-md hover:shadow-blue-500/30 active:shadow-inner"
-            >
-              <FaIdCard className="h-5 w-5" />
-              Visiting Card
-            </a>
-          </div>
+          <p className="mt-2 font-semibold italic text-xl text-gray-700 dark:text-gray-800">
+           I always try to immerse students in the world of creation.
+          </p>
+          
         </div>
 
         {/* Right - Image */}
-        <div className="flex-1">
+        <div className="flex-1 flex justify-center">
           <img
             src={aboutImg}
             alt="Krishti artist"
@@ -99,8 +84,10 @@ export default function About() {
         </div>
       </section>
 
+      
+
       {/* SECTION 2: Social Links + Description */}
-      <section className="flex flex-col md:flex-row items-center gap-12">
+      <section className="flex flex-col-reverse lg:flex-row items-center gap-12">
         {/* left - Short Description */}
         <div className="flex-1 relative group">
           <img 
@@ -117,8 +104,27 @@ export default function About() {
         </div>
 
         {/* right - Social Icons */}
-        <div className="flex-1 space-y-6">
-          <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+        <div className="flex-1 space-y-6 w-full">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+            <a
+              href={cv}
+              download
+              className="flex items-center justify-center w-auto gap-2 px-6 py-5 bg-yellow-50 text-yellow-500 border-2 font-bold rounded-lg transition duration-200 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 cursor-pointer shadow-md hover:shadow-yellow-500/30 active:shadow-inner"
+            >
+              <FaDownload className="h-5 w-5" />
+              Download CV
+            </a>
+
+            <a
+              href={v}
+              download
+              className="flex items-center justify-center w-auto gap-2 px-6 py-5 bg-blue-50 text-blue-500 border-2 font-bold rounded-lg  transition duration-200 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer shadow-md hover:shadow-blue-500/30 active:shadow-inner"
+            >
+              <FaIdCard className="h-5 w-5" />
+              Visiting Card
+            </a>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
             {socials.map((social, index) => (
               <a
                 key={index}
@@ -143,41 +149,46 @@ export default function About() {
               </a>
             ))}
           </div>
-
-          <p className="text-center text-gray-600 dark:text-gray-600 mt-6">
-            Let's create something amazing together!
-          </p>
         </div>
       </section>
 
-        <section className="w-full relative">
-        {/* Mobile Image (shows only on mobile) */}
-        <div className="md:hidden">
-          <img
-            src={p1}
-            alt="Mobile optimized content"
-            className="w-full h-auto object-cover rounded-lg shadow-sm transition duration-300 transform hover:scale-[1.03] cursor-pointer"
-            loading="lazy"
-          />
-        </div>
+        {/* Flex container - column on mobile, row on desktop */}
+        <section className="flex flex-col md:flex-row gap-10 md:gap-10 items-center justify-between">
+          {/* Text - full width on mobile, 50% on desktop */}
+          <div className="w-full md:w-1/2">
+            <p className="text-gray-600 dark:text-gray-800 font-semibold italic text-xl md:text-xl">
+              My father, Anath Saran Dey, is a skilled weaver. He makes a living by making pure silk sarees on handloom at home. My mother, Dipali Dey, is a housewife. Apart from doing household chores, my mother is also very skilled in craft work. Before learning art in school and college, I first learned various handicrafts from my mother.
+            </p>
+          </div>
+        
+          {/* Image - full width on mobile, 50% on desktop */}
+          <div className="flex w-full md:w-1/2 lg:w-1/2">
+            {/* Mobile/Tablet Image (hidden on desktop) */}
+            <div className="w-full flex justify-center lg:hidden">
+              <img
+                src={p1}
+                alt="Handloom weaving (Mobile)"
+                className="max-w-full h-auto object-cover rounded-lg shadow-sm transition duration-300 hover:scale-[1.03] cursor-pointer"
+                loading="lazy"
+              />
+            </div>
 
-        {/* Desktop/Tablet/4K Image (shows on larger screens) */}
-        <div className="hidden md:block">
-          <picture>
-            <img
-              src={p}
-              alt="Desktop optimized content"
-              className="w-full h-auto object-cover rounded-lg shadow-md transition duration-300 transform hover:scale-[1.03] cursor-pointer"
-              loading="lazy"
-            />
-          </picture>
-        </div>
+            {/* Desktop/TV Image (hidden on mobile/tablet) */}
+            <div className="hidden lg:flex justify-center">
+              <img
+                src={p}
+                alt="Handloom weaving (Desktop)"
+                className="max-w-full h-auto object-cover rounded-lg shadow-sm transition duration-300 hover:scale-[1.03] cursor-pointer"
+                loading="lazy"
+              />
+            </div>
+          </div>
       </section>
       
 
       {/* SECTION 3: Full Width Final Text */}
       <section className="w-full text-left space-y-4">
-        <p className="text-xl text-gray-700 dark:text-gray-700">
+        <p className="text-xl text-gray-700 dark:text-gray-800">
           <samp className='font-bold text-2xl'>W</samp>e are moving forward uninterruptedly days after days, years after
           years and decades after decades depending on the essence of the word
           ‘creation’ only. Our world is one of the many creations of the
