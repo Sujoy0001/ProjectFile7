@@ -335,7 +335,7 @@ function LandingPage() {
           Every work is an Art. So your work is absolutely an Art. Try it. Try it. Try it and do it. And try to create something new.
         </p>
         <p className="text-base sm:text-lg font-semibold text-gray-600">
-          — Animish Day
+          — Animesh Dey
         </p>
       </section>
     </>
