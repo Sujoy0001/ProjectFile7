@@ -58,17 +58,17 @@ export default function About() {
         {/* Left - Text */}
         <div className="flex-1">
           <h1 className="text-3xl font-bold mb-6 text-gray-800">About Me</h1>
-          <p className="font-semibold italic text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-            <samp className='font-semibold text-2xl'>H</samp>i, I'm <span className="font-bold text-blue-600">Animesh Dey</span>,
+          <p className="font-semibold italic text-lg text-gray-700 dark:text-gray-800 leading-relaxed">
+            <samp className='font-semibold text-2xl'>H</samp>i, I'm <a href="https://www.facebook.com/animesh.dey.5209/" target="_blanck"><span className="font-bold text-blue-600">Animesh Dey</span></a>,
             an enthusiastic drawing teacher and artist. I specialize in helping students develop painting, craftwork, and digital art skills.
           </p>
           <p className="mt-2 font-semibold italic text-lg text-gray-700 dark:text-gray-800">
-           I live in Birsingh, a remote village in Bankura district of West Bengal, India. I have had a deep love for art since childhood. After graduating from Sonamukhi College under Burdwan University, I joined an art college (College of Art and Design) in Burdwan in 2009. After studying visual arts for two years, I completed my D.V.A. in 2011 with 1st class 1st.
+           I live in Birsingh, a remote village in Bankura district of West Bengal, India. I have had a deep love for art since childhood. After graduating from <a href="https://maps.app.goo.gl/ep7LJWnhCANJNqSn6" target="_blanck" className="text-blue-600">Sonamukhi College</a> under <a href="https://maps.app.goo.gl/7ehM2kxwzt6Xyxcz5" target="_blanck" className="text-blue-600">Burdwan University</a>, I joined an art college <a href="https://maps.app.goo.gl/oYDz7Vh8Q1MfQVXx6" target="_blanck" className="text-blue-600">(College of Art and Design)</a> in Burdwan in 2009. After studying visual arts for two years, I completed my D.V.A. in 2011 with 1st class 1st.
           </p>
           <p className="mt-2 font-semibold italic text-lg text-gray-700 dark:text-gray-800">
             Later, I worked on several government projects. I worked as a master trainer in design training for weavers and taught hand batik to college girls for skill development in various government projects.
           </p>
-          <p className="mt-2 font-semibold italic text-xl text-gray-700 dark:text-gray-800">
+          <p className="mt-2 font-semibold italic text-lg text-gray-700 dark:text-gray-800">
            I always try to immerse students in the world of creation.
           </p>
           

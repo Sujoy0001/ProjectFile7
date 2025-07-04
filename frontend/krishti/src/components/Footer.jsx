@@ -26,15 +26,14 @@ export default function Footer() {
 
           <div className="flex flex-row sm:flex-row items-center justify-center gap-3">
             <Link to="/my-work/design"
-              className="w-auto sm:w-auto block py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
+              className="w-auto sm:w-auto block py-3 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-700 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
             >
               View my work
             </Link>
-            <a
-              href="javascript:void(0)"
-              className="w-auto sm:w-auto flex items-center justify-center gap-x-2 py-3 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg"
+            <Link to="/college-work/design"
+              className="w-auto sm:w-auto flex items-center justify-center gap-x-2 py-3 px-4 text-gray-700 hover:text-gray-900 font-medium duration-150 active:bg-gray-500 border rounded-lg"
             >
-              View Blog's
+              College Work
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -47,7 +46,7 @@ export default function Footer() {
                   d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 
