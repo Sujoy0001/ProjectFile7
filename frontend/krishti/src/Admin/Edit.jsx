@@ -25,6 +25,13 @@ const Edit = () => {
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showSubcategoryDropdown, setShowSubcategoryDropdown] = useState(false);
 
+  // Get loading states reactively from stores
+  const myWorkLoading = myWorkStore(state => state.isLoading);
+  const collegeWorkLoading = collegeWorkStore(state => state.isLoading);
+  const isLoading = 
+    (selectedCategory === "My Work" && myWorkLoading) ||
+    (selectedCategory === "College Work" && collegeWorkLoading);
+
   // Load data when subcategory is selected
   useEffect(() => {
     const fetchItems = async () => {
@@ -133,10 +140,6 @@ const Edit = () => {
     item.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const isLoading = 
-    (selectedCategory === "My Work" && myWorkStore.getState().isLoading) ||
-    (selectedCategory === "College Work" && collegeWorkStore.getState().isLoading);
-
   return (
     <div className={`min-h-screen py-8 px-4 ${(showEditModal || showDeleteModal) ? 'overflow-hidden' : ''}`}>
       {/* Blur overlay when modals are open */}
@@ -152,73 +155,73 @@ const Edit = () => {
           <div className="mb-8">
             <div className="relative">
               <button
-              onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
-              className={`w-full sm:w-64 px-4 py-3 text-left flex items-center justify-between rounded-lg border cursor-pointer ${
-                selectedCategory ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
-              }`}
-            >
-              <span>{selectedCategory || "Select Category"}</span>
-              <FiChevronDown className={`transition-transform ${showCategoryDropdown ? 'rotate-180' : ''}`} />
-            </button>
-            
-            {showCategoryDropdown && (
-              <div className="absolute z-10 mt-1 w-full sm:w-64 bg-white rounded-lg shadow-lg border border-gray-200">
-                {Object.keys(categories).map(category => (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      setSelectedCategory(category);
-                      setSelectedSubcategory(null);
-                      setShowCategoryDropdown(false);
-                      setShowSubcategoryDropdown(true);
-                    }}
-                    className={`w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer ${
-                      selectedCategory === category ? 'bg-blue-50 text-blue-600' : ''
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Subcategory Selection */}
-        {selectedCategory && (
-          <div className="mb-8">
-            <div className="relative">
-              <button
-                onClick={() => setShowSubcategoryDropdown(!showSubcategoryDropdown)}
+                onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
                 className={`w-full sm:w-64 px-4 py-3 text-left flex items-center justify-between rounded-lg border cursor-pointer ${
-                  selectedSubcategory ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+                  selectedCategory ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
                 }`}
               >
-                <span>{selectedSubcategory || "Select Subcategory"}</span>
-                <FiChevronDown className={`transition-transform ${showSubcategoryDropdown ? 'rotate-180' : ''}`} />
+                <span>{selectedCategory || "Select Category"}</span>
+                <FiChevronDown className={`transition-transform ${showCategoryDropdown ? 'rotate-180' : ''}`} />
               </button>
               
-              {showSubcategoryDropdown && (
+              {showCategoryDropdown && (
                 <div className="absolute z-10 mt-1 w-full sm:w-64 bg-white rounded-lg shadow-lg border border-gray-200">
-                  {categories[selectedCategory].map(subcategory => (
+                  {Object.keys(categories).map(category => (
                     <button
-                      key={subcategory}
+                      key={category}
                       onClick={() => {
-                        setSelectedSubcategory(subcategory);
-                        setShowSubcategoryDropdown(false);
+                        setSelectedCategory(category);
+                        setSelectedSubcategory(null);
+                        setShowCategoryDropdown(false);
+                        setShowSubcategoryDropdown(true);
                       }}
                       className={`w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer ${
-                        selectedSubcategory === subcategory ? 'bg-blue-50 text-blue-600' : ''
+                        selectedCategory === category ? 'bg-blue-50 text-blue-600' : ''
                       }`}
                     >
-                      {subcategory}
+                      {category}
                     </button>
                   ))}
                 </div>
               )}
             </div>
           </div>
-        )}
+
+          {/* Subcategory Selection */}
+          {selectedCategory && (
+            <div className="mb-8">
+              <div className="relative">
+                <button
+                  onClick={() => setShowSubcategoryDropdown(!showSubcategoryDropdown)}
+                  className={`w-full sm:w-64 px-4 py-3 text-left flex items-center justify-between rounded-lg border cursor-pointer ${
+                    selectedSubcategory ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+                  }`}
+                >
+                  <span>{selectedSubcategory || "Select Subcategory"}</span>
+                  <FiChevronDown className={`transition-transform ${showSubcategoryDropdown ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {showSubcategoryDropdown && (
+                  <div className="absolute z-10 mt-1 w-full sm:w-64 bg-white rounded-lg shadow-lg border border-gray-200">
+                    {categories[selectedCategory].map(subcategory => (
+                      <button
+                        key={subcategory}
+                        onClick={() => {
+                          setSelectedSubcategory(subcategory);
+                          setShowSubcategoryDropdown(false);
+                        }}
+                        className={`w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer ${
+                          selectedSubcategory === subcategory ? 'bg-blue-50 text-blue-600' : ''
+                        }`}
+                      >
+                        {subcategory}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Items Display */}
