@@ -157,7 +157,7 @@ export default function About() {
           {/* Text - full width on mobile, 50% on desktop */}
           <div className="w-full md:w-1/2">
             <p className="text-gray-600 dark:text-gray-800 font-semibold italic text-xl md:text-xl">
-              My father, Anath Saran Dey, is a skilled weaver. He earns his livelihood by weaving pure silk sarees on a handloom at home. My mother, Dipali Dey, is a housewife. Apart from doing household chores, my mother is also very skilled in craft work. Before learning art in school and college, I first learned various handicrafts from my mother.
+              My father, Anath Saran Dey, is a skilled weaver. He earns his livelihood by weaving pure silk sarees on a handloom at home. My mother, Dipali Dey, is a homemaker. Besides managing household chores, she is also highly skilled in various crafts. Before I learned art in school and college, I first learned different forms of handicraft from my mother.
             </p>
           </div>
         
@@ -189,67 +189,38 @@ export default function About() {
       {/* SECTION 3: Full Width Final Text */}
       <section className="w-full text-left space-y-4">
         <p className="text-xl text-gray-700 dark:text-gray-800">
-          <samp className='font-bold text-2xl'>W</samp>e have been moving forward - day after day, year after year, and decade after decade depending on the essence of the word
-          ‘creation’ only. Our world is one of the many creations of the
-          Almighty in this universe. He has shaped this world into today’s
-          matured one through ups and downs of time. In this divers play of
-          creation we have not only discovered many unique things, we have also lost many. An old creation fades away to make room for a
-          new one in keeping with the dictum ‘one that has a life, must die’.
-          Yet, we try harder and harder to keep the reminiscences of the past.
+          <samp className='font-bold text-2xl'>W</samp>e have been moving forward—day after day, year after year, and decade after decade—relying solely on the essence of the word creation.
+            Our world is one of the countless creations of the Almighty in this vast universe. He has shaped it into what it is today through the passage of time—through its many ups and downs. In this diverse play of creation, we have not only discovered many unique things, but we have also lost many. An old creation fades away to make space for the new, in accordance with the eternal truth: "everything that lives must die." Yet, we continue to try our best to preserve the memories of the past.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          <samp className='font-bold text-2xl'>A</samp>lmighty, while creating this world very tactfully mingled the
-          inanimate objects like hills, rivers and water with the animated
-          world. Among those creations, he has made human beings special by his
-          delicate and cognitive touches with the belief that, in future they
-          will play an active role in his creative works.
+          <samp className='font-bold text-2xl'>A</samp>lmighty, While creating this world, the Almighty skillfully blended inanimate objects—like hills, rivers, and water—with the living world. Among these creations, human beings were made special through His delicate and thoughtful touch, with the belief that they would one day actively participate in His creative process.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          <samp className='font-bold text-2xl'>N</samp>ow, we come to the discussion of ‘art’. Nature has not only destroyed
-          but also created innumerable things with his play of destruction and
-          reconstruction in an endless manner. We are fascinated by the charming
-          beauties of nature. When we come to the discussion of birds, animals
-          and insects, we observe that a bird weaves its nest with the help of
-          grass and hay-particles; a fascinating exhibition of art. Again a
-          spider makes its monumental net with its own body fluid which is the
-          main source of collecting food. We are enthralled by the charming
-          beauties of a grass flower lying on the ground or a sunflower heading
-          towards the sun or by the unique structure of the leaves of different
-          trees. Maintaining the proper geometric shapes, a honeybee makes a
-          beehive for future generation. There are so many beautiful things of
-          this type which are the gift of nature. These are called natural or
-          supernatural art. Here nature showcases its own craftsmanship.
+          <samp className='font-bold text-2xl'>N</samp>ow, let us turn to the subject of art.
+            Nature, in its continuous process of destruction and reconstruction, has not only destroyed but also created countless wonders. We are mesmerized by the beauty of nature. When we look at birds, animals, or insects, we see examples of artistic brilliance:
+            A bird weaves its nest using grass and twigs—an amazing expression of natural art.
+            A spider spins a remarkable web with fluid from its own body—a vital structure for catching food.
+            We are captivated by the beauty of a small grass flower lying on the ground, a sunflower turning toward the sun, or the unique shapes of leaves from different trees.
+            A honeybee constructs a beehive with perfect geometric precision for future generations. These are just a few examples of nature's creative masterpieces—commonly referred to as natural or supernatural art. In these, nature showcases its own craftsmanship, directly or indirectly.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          <samp className='font-bold text-2xl'>T</samp>hen, when we come to the creation of art by human beings, we must
-          confess that we are creation of nature. Here we must say that the
-          nature is the omnipresent creator of all creative skills. Because by
-          taking the ideas from nature we drench our delicate feelings with
-          nature’s beauty and then express to others. The art or artistic
-          beauties of a human being is bound to be influenced by the
-          socio-cultural aspects of a particular province. Again that art
-          changes the socio-cultural background of a society in a gap of long
-          years. There are various ways of expressing the internal creativity by
-          means of which we exhibits various types of artistic skills and
-          crafts. Art like sketching, drawing and architectural constructions
-          belong to visual art. Whereas novel, epic, short stories and poetry
-          belong to literature. On the other hand dancing, singing and drama etc
-          belong to cultural art. In recent times, photography has earned a vast
-          place in the era of visual art.
+          <samp className='font-bold text-2xl'>T</samp>hen, When we talk about art created by humans, we must acknowledge that we ourselves are products of nature.
+            Thus, nature is the ultimate source of all creative skills. We take inspiration from nature, blend it with our emotions, and express it through art.
+            Human artistic expression is influenced by the socio-cultural background of a particular place or community. Over time, art itself influences and transforms that culture.
+
+            There are many ways to express inner creativity. Forms like sketching, painting, and architecture fall under visual arts.
+            Novels, epics, short stories, and poetry belong to literary arts.
+            Dance, music, and drama are part of performing or cultural arts.
+            In recent times, photography has also emerged as a powerful form of visual art.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
-          <samp className='font-bold text-2xl'>B</samp>arring the real life representation of creative emotions, we also
-          express creativity in the field of our basic needs like foods,
-          clothing and lodging uninterruptedly. Whereas we are experimenting new
-          flavors in the field of cooking, we are making new designs in the
-          section of building and garments. To sum up, ’every creative work is
-          an art’. And by expressing our internal creativity we are continuously
-          creating something new, may be for our daily needs or for luxury. We
-          have been able to keep nature’s faith in human beings in creating new
-          artistic beauties. That is why nature is still reigning in its various
-          charming forms in different manner. The joy of creation is
-          unimaginable. In human society, only a mother can feel the ecstatic
-          joy of creation mostly.
+          <samp className='font-bold text-2xl'>B</samp>arring artistic representation of emotions, we also apply creativity to meet our basic needs—food, clothing, and shelter.
+            As we explore new tastes in cooking, we also experiment with new designs in clothing and architecture.
+            In short, every creative work is a form of art.
+            Through creativity—whether for daily necessity or luxury—we continuously give birth to something new.
+            This is how we uphold nature's faith in human beings as creators.
+            As a result, nature continues to thrive in its endless, enchanting forms.
+            The joy of creation is indescribable. In human society, only a mother can truly understand the ecstatic bliss of creation.
         </p>
       </section>
     </div>
