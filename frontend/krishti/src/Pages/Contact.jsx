@@ -113,7 +113,7 @@ export default function Contact() {
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-blue-600 text-xl" />
                 <a href="mailto:animeshday.in@gmail.com" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
-                  animeshday.in@gmail.com
+                  animeshdey.in@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
