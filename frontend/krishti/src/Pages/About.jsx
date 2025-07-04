@@ -157,7 +157,7 @@ export default function About() {
           {/* Text - full width on mobile, 50% on desktop */}
           <div className="w-full md:w-1/2">
             <p className="text-gray-600 dark:text-gray-800 font-semibold italic text-xl md:text-xl">
-              My father, Anath Saran Dey, is a skilled weaver. He makes a living by making pure silk sarees on handloom at home. My mother, Dipali Dey, is a housewife. Apart from doing household chores, my mother is also very skilled in craft work. Before learning art in school and college, I first learned various handicrafts from my mother.
+              My father, Anath Saran Dey, is a skilled weaver. He earns his livelihood by weaving pure silk sarees on a handloom at home. My mother, Dipali Dey, is a housewife. Apart from doing household chores, my mother is also very skilled in craft work. Before learning art in school and college, I first learned various handicrafts from my mother.
             </p>
           </div>
         
@@ -189,13 +189,11 @@ export default function About() {
       {/* SECTION 3: Full Width Final Text */}
       <section className="w-full text-left space-y-4">
         <p className="text-xl text-gray-700 dark:text-gray-800">
-          <samp className='font-bold text-2xl'>W</samp>e are moving forward uninterruptedly days after days, years after
-          years and decades after decades depending on the essence of the word
+          <samp className='font-bold text-2xl'>W</samp>e have been moving forward - day after day, year after year, and decade after decade depending on the essence of the word
           ‘creation’ only. Our world is one of the many creations of the
           Almighty in this universe. He has shaped this world into today’s
           matured one through ups and downs of time. In this divers play of
-          creation we have not only discovered many unique things, we have
-          also lost many. Though, an old one passes away to make room for a
+          creation we have not only discovered many unique things, we have also lost many. An old creation fades away to make room for a
           new one in keeping with the dictum ‘one that has a life, must die’.
           Yet, we try harder and harder to keep the reminiscences of the past.
         </p>
@@ -220,8 +218,7 @@ export default function About() {
           trees. Maintaining the proper geometric shapes, a honeybee makes a
           beehive for future generation. There are so many beautiful things of
           this type which are the gift of nature. These are called natural or
-          supernatural art. Here nature directly or indirectly shows his own
-          craftsmanship.
+          supernatural art. Here nature showcases its own craftsmanship.
         </p>
         <p className="text-xl text-gray-700 dark:text-gray-800 leading-relaxed">
           <samp className='font-bold text-2xl'>T</samp>hen, when we come to the creation of art by human beings, we must
