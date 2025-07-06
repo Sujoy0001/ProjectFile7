@@ -247,8 +247,9 @@ function LandingPage() {
             myWorkNewImages.map((val) => (
               <figure
                 key={val._id}
-                className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="group relative overflow-hidden rounded shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
+                <div className="">
                 <img
                   src={val.image.url}
                   alt={val.image.description || `Gallery image ${val._id}`}
@@ -257,12 +258,11 @@ function LandingPage() {
                   width={300}
                   height={300}
                 />
+                <h3 className='p-2 font-semibold italic text-lg text-center'>
+                  {val.title}</h3>
+                </div>
 
-                <figcaption className="absolute cursor-pointer inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-lg font-semibold italic line-clamp-2">
-                    {val.title}
-                  </p>
-                </figcaption>
+                <figcaption className="absolute cursor-pointer inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></figcaption>
               </figure>
             ))
           ) : (
