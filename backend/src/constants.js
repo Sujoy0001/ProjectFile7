@@ -12,9 +12,9 @@ export const myWorkSubcats = [
   "fabric_painting",
   "craft_work",
   "photography",
-  "Lippan_Art",
-  "Mandala_Art",
-  "Quilling_Art",
+  "lippan_art",
+  "mandala_art",
+  "quilling_art",
   "others",
 ];
 
