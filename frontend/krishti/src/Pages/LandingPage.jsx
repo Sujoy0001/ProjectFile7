@@ -4,6 +4,7 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import myImage from "../assets/logos/Animesh.jpg"
 import { PaintBrushIcon, PhotoIcon, FilmIcon, SwatchIcon } from '@heroicons/react/24/solid'
 import myWorkStore from "../store/myWorkStore";
+import { myWorkSubcats } from '../constant/constant';
 import img1 from "../assets/images/dit/Untitled-1.jpg"
 import img2 from "../assets/images/dit/Untitled-2.jpg"
 import img3 from "../assets/images/dit/Untitled-3.jpg"
@@ -92,7 +93,13 @@ function LandingPage() {
     return () => {
       setMyWorkNewImages();
     }
-  }, [])
+  }, []);
+
+  const formatCategory = (str) => {
+    return str
+      .replace(/_/g, ' ')       // Replace underscores with spaces
+      .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letters
+  };
 
   return (
     <>
@@ -286,8 +293,25 @@ function LandingPage() {
         </div>
       </section>
 
+
+      <section className="max-w-6xl mx-auto py-2 mb-6">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-3">
+            {myWorkSubcats.map((title) => (
+              <Link key={title} to={`/my-work/${title}`} className="focus:outline-none">
+                <div className="px-3 py-2.5 rounded border-2 border-purple-500 bg-purple-100 hover:border-yellow-400 transition-colors duration-200 flex items-center justify-center hover:text-yellow-500 hover:bg-amber-100">
+                  <span className="font-semibold italic">
+                    {formatCategory(title)}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       
-      <section className="w-full py-4 px-4 sm:px-6 lg:px-8">
+      <section className="max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
             <div className="text-center mb-10">
