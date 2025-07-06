@@ -249,7 +249,7 @@ function LandingPage() {
                 key={val._id}
                 className="group relative overflow-hidden rounded shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className="">
+              <div className="p-0">
                 <img
                   src={val.image.url}
                   alt={val.image.description || `Gallery image ${val._id}`}
@@ -259,8 +259,9 @@ function LandingPage() {
                   height={300}
                 />
                 <h3 className='p-2 font-semibold italic text-lg text-center'>
-                  {val.title}</h3>
-                </div>
+                  {formatCategory(val.title)}
+                </h3>
+              </div>
 
                 <figcaption className="absolute cursor-pointer inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></figcaption>
               </figure>
