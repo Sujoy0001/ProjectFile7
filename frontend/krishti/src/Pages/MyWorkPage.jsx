@@ -17,6 +17,13 @@ export default function MyWorkPage() {
   } = myWorkStore();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [])
+
+  useEffect(() => {
     setMyWorkTitle(category);
   }, [category, setMyWorkTitle]);
 
@@ -59,38 +66,38 @@ export default function MyWorkPage() {
       </h1>
 
 
-    <Masonry
-      breakpointCols={{ default: 3, 1024: 2, 640: 1 }} // Responsive columns
-      className="flex gap-4 md:gap-4 lg:gap-4 mx-auto max-w-7xl px-0 sm:px-6 lg:px-8 py-4" // Increased gap, added max-width and padding
-      columnClassName="bg-clip-padding" // Standard for Masonry
-    >
-      {myWorkTitle.map((val, idx) => (
-        <div
-          key={val._id}
-          className="group relative mb-6 overflow-hidden rounded shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-[1.02]" // Enhanced card styling with hover effects
-          onClick={() => openModal(val)}
-        >
-          {/* Image with overlay effect */}
-          <img
-            src={val.image.url}
-            alt={val.image.description || `Image ${idx + 1}`}
-            className="w-full h-auto object-cover rounded transition-all duration-300 group-hover:opacity-80" // Image Opacity on hover
-          />
+      <Masonry
+        breakpointCols={{ default: 3, 1024: 2, 640: 1 }} // Responsive columns
+        className="flex gap-4 md:gap-4 lg:gap-4 mx-auto max-w-7xl px-0 sm:px-6 lg:px-8 py-4" // Increased gap, added max-width and padding
+        columnClassName="bg-clip-padding" // Standard for Masonry
+      >
+        {myWorkTitle.map((val, idx) => (
+          <div
+            key={val._id}
+            className="group relative mb-6 overflow-hidden rounded shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-[1.02]" // Enhanced card styling with hover effects
+            onClick={() => openModal(val)}
+          >
+            {/* Image with overlay effect */}
+            <img
+              src={val.image.url}
+              alt={val.image.description || `Image ${idx + 1}`}
+              className="w-full h-auto object-cover rounded transition-all duration-300 group-hover:opacity-80" // Image Opacity on hover
+            />
 
-          {/* Text Overlay for better presentation */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex items-end p-4">
-            <div className="text-white">
-              <h3 className="text-xl md:text-2xl font-bold mb-1 text-amber-300 italic">
-                {formatName(val.title)}
-              </h3>
-              <span className="text-xs md:text-sm opacity-70 mt-1 block text-amber-100 font-bold italic">
-                Work #{idx + 1}
-              </span>
+            {/* Text Overlay for better presentation */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex items-end p-4">
+              <div className="text-white">
+                <h3 className="text-xl md:text-2xl font-bold mb-1 text-amber-300 italic">
+                  {formatName(val.title)}
+                </h3>
+                <span className="text-xs md:text-sm opacity-70 mt-1 block text-amber-100 font-bold italic">
+                  Work #{idx + 1}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </Masonry>
+        ))}
+      </Masonry>
 
 
       {/* Modal */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaWhatsapp, FaGooglePay, FaEnvelope, FaPhone, FaFacebookF, FaYoutube, FaInstagram } from "react-icons/fa";
 import { useForm } from '@formspree/react';
 import "../App.css";
@@ -12,6 +12,13 @@ export default function Contact() {
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +37,7 @@ export default function Contact() {
     return (
       <div className="animate-fade-in">
         <p className="text-center text-green-600 font-semibold py-10 px-4 text-lg md:text-xl">
-          Thanks for contacting me! 
+          Thanks for contacting me!
           <span className="block mt-3 text-sm text-green-500 font-normal">
             I'll get back to you soon.
           </span>

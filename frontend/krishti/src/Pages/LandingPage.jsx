@@ -33,6 +33,7 @@ const textColors = [
   'text-rose-900',
 ];
 
+
 function LandingPage() {
   const [email, setEmail] = useState('')
 
@@ -84,8 +85,8 @@ function LandingPage() {
     return () => clearInterval(intervalId);
   }, []);
 
-   
-  const {myWorkNewImages, setMyWorkNewImages} = myWorkStore();
+
+  const { myWorkNewImages, setMyWorkNewImages } = myWorkStore();
 
   useEffect(() => {
     setMyWorkNewImages();
@@ -100,6 +101,15 @@ function LandingPage() {
       .replace(/_/g, ' ')       // Replace underscores with spaces
       .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letters
   };
+
+  useEffect(() => {
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, 100);
+}, []);
 
   return (
     <>
@@ -147,16 +157,15 @@ function LandingPage() {
                 key={index}
                 src={img}
                 alt={`Slide ${index + 1}`}
-                className={`absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 ease-in-out ${
-                  index === current
-                    ? 'translate-x-0 z-10'
-                    : index === (current - 1 + images.length) % images.length
+                className={`absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 ease-in-out ${index === current
+                  ? 'translate-x-0 z-10'
+                  : index === (current - 1 + images.length) % images.length
                     ? '-translate-x-full z-0'
                     : 'translate-x-full z-0'
-                }`}
+                  }`}
               />
             ))}
-            
+
             <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent z-20"></div>
           </div>
 
@@ -181,11 +190,10 @@ function LandingPage() {
               <button
                 key={index}
                 onClick={() => setCurrent(index)}
-                className={`w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full transition-all duration-300 ${
-                  current === index
-                    ? "bg-white scale-125 shadow-sm"
-                    : "bg-white/50 hover:bg-white/70"
-                }`}
+                className={`w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full transition-all duration-300 ${current === index
+                  ? "bg-white scale-125 shadow-sm"
+                  : "bg-white/50 hover:bg-white/70"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -311,42 +319,42 @@ function LandingPage() {
         </div>
       </section>
 
-      
-      <section className="max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                Featured Videos
-              </h2>
-              <p className="mt-2 text-lg text-gray-600">
-                Watch our latest content
-              </p>
-            </div>
 
-            {/* Video Grid - Single Column on mobile, 3 columns on desktop */}
-            <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Video 1 */}
-              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">               
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/R3tyw4r-ILA?si=aHfbFJgVFnVBJhfy" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>               
-              </div>
-              {/* Video 2 - Duplicate and modify for additional videos */}
-              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"> 
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/CxQha8fWmwc?si=5BOdUwe5vnR_3SPH" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>               
-              </div>
-              {/* Video 3 - Duplicate and modify for additional videos */}
-              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/uJzeY69MRGM?si=e7aDcBdyGqUDS5Du" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-             </div>
+      <section className="max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Featured Videos
+            </h2>
+            <p className="mt-2 text-lg text-gray-600">
+              Watch our latest content
+            </p>
+          </div>
+
+          {/* Video Grid - Single Column on mobile, 3 columns on desktop */}
+          <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Video 1 */}
+            <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/R3tyw4r-ILA?si=aHfbFJgVFnVBJhfy" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
             </div>
-            {/* Optional CTA Button */}
-            <div className="mt-8 text-center">
-              <a href="https://www.youtube.com/@Krishti" target="_blank" rel="noopener noreferrer">
+            {/* Video 2 - Duplicate and modify for additional videos */}
+            <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/CxQha8fWmwc?si=5BOdUwe5vnR_3SPH" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </div>
+            {/* Video 3 - Duplicate and modify for additional videos */}
+            <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/uJzeY69MRGM?si=e7aDcBdyGqUDS5Du" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </div>
+          </div>
+          {/* Optional CTA Button */}
+          <div className="mt-8 text-center">
+            <a href="https://www.youtube.com/@Krishti" target="_blank" rel="noopener noreferrer">
               <button className="w-auto px-5 py-4 inline-flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all font-medium sm:font-bold text-sm sm:text-base shadow-lg hover:shadow-xl">
                 View All Videos
               </button></a>
-            </div>
           </div>
+        </div>
       </section>
 
       {/* Quote Section */}
