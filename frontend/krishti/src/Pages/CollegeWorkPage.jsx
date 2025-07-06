@@ -17,6 +17,13 @@ export default function CollegeWorkPage() {
   } = collegeWorkStore();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
+  useEffect(() => {
     setCollegeWorkTitle(category);
   }, [category, setCollegeWorkTitle]);
 
@@ -78,7 +85,7 @@ export default function CollegeWorkPage() {
               alt={val.image.description || `Image ${idx + 1}`}
               className="w-full h-auto object-cover rounded transition-all duration-300 group-hover:opacity-80" // Image Opacity on hover
             />
-  
+
             {/* Text Overlay for better presentation */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex items-end p-4">
               <div className="text-white">
@@ -116,23 +123,23 @@ export default function CollegeWorkPage() {
               </button>
             </div>
 
-          <div className="flex flex-col max-h-[80vh] overflow-y-auto">
-            <div className="flex-1 p-4">
-              <img
-                src={selectedItem.image.url}
-                alt={selectedItem.image.description || "Selected"}
-                className="mx-auto max-h-[75vh] w-full object-contain rounded"
-              />
-            </div>
+            <div className="flex flex-col max-h-[80vh] overflow-y-auto">
+              <div className="flex-1 p-4">
+                <img
+                  src={selectedItem.image.url}
+                  alt={selectedItem.image.description || "Selected"}
+                  className="mx-auto max-h-[75vh] w-full object-contain rounded"
+                />
+              </div>
 
-            <div className="p-2 border-t">
-              {selectedItem.image.description && (
-                <p className="mt-0 text-gray-900 text-md italic">
-                  {selectedItem.image.description}
-                </p>
-              )}
+              <div className="p-2 border-t">
+                {selectedItem.image.description && (
+                  <p className="mt-0 text-gray-900 text-md italic">
+                    {selectedItem.image.description}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
           </div>
         </div>
       )}
